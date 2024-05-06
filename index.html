@@ -3,61 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p5.js Example</title>
+    <title>The Narure of Code</title>
     <script src="./p5/p5.js"></script>
 </head>
 <body>
+  <h1>The Nature of Code</h1>
+  <h2>Chapter 0 - Randomness</h2>
   <script>
-let walker;
+      let walker;
 
-function setup() {
-  createCanvas(640, 240);
-  walker = new Walker();
-  background(255);
-}
+      function setup() {
+        createCanvas(640, 240);
+        walker = new Walker();
+        background(255);
+      }
 
-function draw() {
-  walker.step();
-  walker.show();
-}
+      function draw() {
+        walker.step();
+        walker.show();
+      }
 
-class Walker {
-  constructor() {
-    this.x = width / 2;
-    this.y = height / 2;
-  }
+      class Walker {
+        constructor() {
+          this.x = width / 2;
+          this.y = height / 2;
+        }
 
-  show() {
-    stroke(0);
-    point(this.x, this.y);
-  }
+        show() {
+          stroke(0);
+          point(this.x, this.y);
+        }
 
-  // step() {
-  //   const choice = floor(random(4));
-  //   if (choice == 0) {
-  //     this.x++;
-  //   } else if (choice == 1) {
-  //     this.x--;
-  //   } else if (choice == 2) {
-  //     this.y++;
-  //   } else {
-  //     this.y--;
-  //   }
-  // }
-
-  step() {
-  const choice = floor(random(120)); // Generate a random number from 0 to 11
-  if (choice >= 0 && choice < 31) {
-    this.x++;  // Move right (4 options)
-  } else if (choice >= 31 && choice < 62) {
-    this.y++;  // Move up (2 options)
-  } else if (choice >= 62 && choice < 92) {
-    this.x--;  // Move left (4 options)
-  } else {
-    this.y--;  // Move down (2 options)
-  }
-}
-}
+        step() {
+          const choice = floor(random(120));
+          if (choice >= 0 && choice < 31) {
+            this.x++;
+          } else if (choice >= 31 && choice < 62) {
+            this.y++;
+          } else if (choice >= 62 && choice < 92) {
+            this.x--;
+          } else {
+            this.y--;
+          }
+        }
+      }
 
     </script>
 </body>
