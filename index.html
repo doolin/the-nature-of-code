@@ -4,16 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Narure of Code</title>
+    <!-- <style>
+      #random-walker {
+        background-color: #f5f5dc; /* Light cream background for the canvas */
+      }
+    </style> -->
     <script src="./p5/p5.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
+
+  Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+
   <h2>Chapter 0 - Randomness</h2>
+
+  The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
+  introduces the concept of random numbers with simple examples such as random walks.
+
+
+
+  <h3> Exercise 0.1: a random walker tending down and right</h3>
+
+  <div id="random-walker"></div>
+
+  <h3> Exercise 0.2: drawing Aces</h3>
+
+  <blockquote>
+    What is the probability of drawing two aces in a row from a
+    deck of 52 cards, if you reshuffle your first draw back into the deck
+    before making your second draw? What would that probability be if you
+    didn’t reshuffle after your first draw?
+  </blockquote>
+
+  <oL>
+    <li><b>With replacement</b>. First draw: \(\frac{4}{52}\); second draw: \(\frac{4}{52}\).
+      Probability of drawing two aces in a row:
+      $$\frac{4}{52} \times \frac{4}{52} = \frac{16}{2704} = \frac{1}{169}$$</li>
+    <li><b>Without replacement</b>First draw: \(\frac{4}{52}\); second draw: \(\frac{3}{51}\).
+      Probability of drawing two aces in a row:
+      $$\frac{4}{52} \times \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}$$</li>
+    </oL>
+
+
+  <h3>Exercise 0.3: random walker with 4 choices</h3>
+
+  <blockquote>
+    Create a random walker with dynamic probabilities. For example,
+    can you give it a 50 percent chance of moving in the direction
+    of the mouse? Remember, you can use mouseX and mouseY to get the
+    current mouse position in p5.js!
+  </blockquote>
+
+
+  <h3>Exercise 0.4: paint spatters</h3>
+
+
+  <blockquote>
+    Consider a simulation of paint splatter drawn as a collection of
+    colored dots. Most of the paint clusters around a central position,
+    but some dots splatter out toward the edges. Can you use a normal
+    distribution of random numbers to generate the positions of the
+    dots? Can you also use a normal distribution of random numbers to
+    generate a color palette? Try creating a slider to adjust the
+    standard deviation.
+  </blockquote>
+
   <script>
       let walker;
 
       function setup() {
-        createCanvas(640, 240);
+        let canvas = createCanvas(640, 240);
+        canvas.parent('random-walker');
+        // FIXME: background is not working
+        background(245, 245, 220);
         walker = new Walker();
         background(255);
       }
@@ -30,10 +94,11 @@
         }
 
         show() {
-          stroke(0);
+          stroke(0, 100, 0);
           point(this.x, this.y);
         }
 
+        // Apparenently this continues even when past the canvas.
         step() {
           const choice = floor(random(120));
           if (choice >= 0 && choice < 31) {
@@ -47,7 +112,6 @@
           }
         }
       }
-
     </script>
 </body>
 </html>
