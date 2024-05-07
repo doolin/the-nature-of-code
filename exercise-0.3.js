@@ -4,7 +4,7 @@ const s1 = ( sketch ) => {
     let canvas = sketch.createCanvas(450, 200);
     canvas.parent('canvas1');
     sketch.background(245, 245, 220);
-    sketch.textSize(16); // Set the text size for better visibility
+    sketch.textSize(12); // Set the text size for better visibility
     sketch.fill(0); // Set the text color to black
     sketch.x = canvas.width / 2;
     sketch.y = canvas.height / 2;
@@ -42,16 +42,14 @@ const s1 = ( sketch ) => {
     sketch.step();
     sketch.show();
 
-    // if (sketch.mouseX >= 0 && sketch.mouseX <= sketch.width && sketch.mouseY >= 0 && sketch.mouseY <= sketch.height) {
     if (sketch.mouse_inside_canvas()) {
       // Clear a small area for the text
       sketch.fill(100, 200, 100);
       sketch.noStroke();
-      sketch.rect(0, 0, 150, 30);
+      sketch.rect(0, 0, 90, 25);
 
-      // Draw the canvas mouse coordinates
       sketch.fill(0);
-      sketch.text(`X: ${sketch.mouseX.toFixed(0)}, Y: ${sketch.mouseY.toFixed(0)}`, 10, 20);
+      sketch.text(`x: ${sketch.mouseX.toFixed(0)}, y: ${sketch.mouseY.toFixed(0)}`, 10, 15);
     }
   };
 };
