@@ -4,13 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Narure of Code</title>
-    <!-- <style>
-      #random-walker {
-        background-color: #f5f5dc; /* Light cream background for the canvas */
+    <style>
+      body {
+          justify-content: center;
+          margin: auto;
+          padding: auto;
+          font-family: Arial, sans-serif;
+          width: 580px;
       }
-    </style> -->
+      blockquote {
+        color: #404040; /* Dark grey color */
+        font-style: italic; /* Optional: to differentiate blockquote from other text */
+      }
+      .text-content {
+          width: 580px;
+          text-align: left;
+      }
+      .canvas-container {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+      }
+      canvas {
+          justify-content: center;
+          border: 3px solid #ccc; /* Optional: adds a light border around the canvas */
+      }
+    </style>
     <script src="./p5/p5.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="exercise-0.3.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
@@ -22,11 +44,9 @@
   The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
   introduces the concept of random numbers with simple examples such as random walks.
 
-
-
   <h3> Exercise 0.1: a random walker tending down and right</h3>
 
-  <div id="random-walker"></div>
+  <div class="canvas-container" id="random-walker"></div>
 
   <h3> Exercise 0.2: drawing Aces</h3>
 
@@ -41,11 +61,10 @@
     <li><b>With replacement</b>. First draw: \(\frac{4}{52}\); second draw: \(\frac{4}{52}\).
       Probability of drawing two aces in a row:
       $$\frac{4}{52} \times \frac{4}{52} = \frac{16}{2704} = \frac{1}{169}$$</li>
-    <li><b>Without replacement</b>First draw: \(\frac{4}{52}\); second draw: \(\frac{3}{51}\).
+    <li><b>Without replacement</b>, First draw: \(\frac{4}{52}\); second draw: \(\frac{3}{51}\).
       Probability of drawing two aces in a row:
       $$\frac{4}{52} \times \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}$$</li>
     </oL>
-
 
   <h3>Exercise 0.3: random walker with 4 choices</h3>
 
@@ -56,9 +75,9 @@
     current mouse position in p5.js!
   </blockquote>
 
+  <div class="canvas-container" id="canvas1"></div>
 
   <h3>Exercise 0.4: paint spatters</h3>
-
 
   <blockquote>
     Consider a simulation of paint splatter drawn as a collection of
@@ -74,7 +93,7 @@
       let walker;
 
       function setup() {
-        let canvas = createCanvas(640, 240);
+        let canvas = createCanvas(450, 240);
         canvas.parent('random-walker');
         background(245, 245, 220);
         walker = new Walker();
