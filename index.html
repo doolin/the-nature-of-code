@@ -117,7 +117,7 @@
 
   <h3 id="ex04">Exercise 0.4: paint spatters</h3>
 
-  <a href="https://natureofcode.com/random/#example-04-a-gaussian-distribution">Direct link</a>.
+  <a href="https://natureofcode.com/random/#exercise-04">Direct link</a>.
 
   <blockquote>
     Consider a simulation of paint splatter drawn as a collection of
@@ -139,8 +139,22 @@
     distribution. Implement this variation of the Walker class.
   </blockquote>
 
+  <p>
+    By definition, a Gaussian, or <i>normal</i> distribution is the continuous probability distribution
+    $$
+    f(x \,|\, \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{(x-\mu)}{\sigma}\right)^2}
+    $$
+    where \(\mu\) is the mean and \(\sigma\) is the standard deviation. With mean \(\mu = 0\) and
+    and standard deviation \(\sigma = 1\), the distribution is the <i>standard normal distribution</i>.
+    P5.js conveniently provides the function <code>randomGaussian()</code> to generate normally distributed
+    random numbers. In the plot below, we set \(\mu = 0\) and \(\sigma = 3\) to produce interesting patterns.
+  </p>
   <div class="canvas-container" id="gaussian-walker"></div>
 
+  <p>
+    A fun extension would be providing controls to adjust the mean and standard deviation.
+  </p>
+ 
   <hr />
 
   Footer TBD.
