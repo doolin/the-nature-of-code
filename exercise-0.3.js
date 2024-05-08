@@ -41,11 +41,11 @@ const s1 = ( sketch ) => {
   }
 
   sketch.step = () => {
-    const choice = sketch.floor(sketch.random(2));
+    const choice = sketch.floor(sketch.random(10));
     if (choice === 0) {
-      sketch.random_direction();
+      sketch.weighted_direction();
     } else {
-        sketch.weighted_direction();
+      sketch.random_direction();
     }
   };
 
