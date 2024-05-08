@@ -1,9 +1,11 @@
 const s1 = ( sketch ) => {
   
+  sketch.background_color = [245, 245, 220];
+
   sketch.setup = () => {
     let canvas = sketch.createCanvas(450, 200);
     canvas.parent('canvas1');
-    sketch.background(245, 245, 220);
+    sketch.background(sketch.background_color);
     sketch.textSize(12); // Set the text size for better visibility
     sketch.fill(0); // Set the text color to black
     sketch.x = canvas.width / 2;
@@ -51,7 +53,7 @@ const s1 = ( sketch ) => {
 
   sketch.show = () => {
     // sketch.stroke(245, 245, 220);
-    sketch.stroke(0, 245, 0);
+    sketch.stroke([0, 100, 0]);
     sketch.point(sketch.x, sketch.y);
   }
 
@@ -65,7 +67,7 @@ const s1 = ( sketch ) => {
 
     if (sketch.mouse_inside_canvas()) {
       // Clear a small area for the text
-      sketch.fill(100, 200, 100);
+      sketch.fill(sketch.background_color);
       sketch.noStroke();
       sketch.rect(0, 0, 90, 25);
 

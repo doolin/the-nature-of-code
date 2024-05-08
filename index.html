@@ -57,6 +57,9 @@
     didn’t reshuffle after your first draw?
   </blockquote>
 
+  <div>
+    <p>This is very straightforward undergraduate probability.</p>
+  </div>
   <oL>
     <li><b>With replacement</b>. First draw: \(\frac{4}{52}\); second draw: \(\frac{4}{52}\).
       Probability of drawing two aces in a row:
@@ -75,7 +78,41 @@
     current mouse position in p5.js!
   </blockquote>
 
-  <div class="canvas-container" id="canvas1"></div>
+  <div>
+    <p>
+      There is some sublety to this exercise with respect to how "50%" is
+      interpreted. Because the canvas tracks the position in floating point
+      numbers and anti-aliases on rendering, we approximate the probabilities
+      be defining two separate stepping functions. The first function will step
+      in one of the 4 cardinal directions with probability 0.5, the second will
+      step along a vector towards the current cursor position.
+    </p>
+
+    <p>
+      Technically, there is some overlap in probabilities when the cursor is
+      perfectly aligned along the cardinal directions. This slightly increases
+      the probability of stepping in that direction.
+    </p>
+
+    <p>
+      Another question: should the mouse coordinates be confined to the canvas,
+      or be anywhere on the page?
+    </p>
+
+    <p>
+      The walker below will step along the cursor position vector with probability 0.1.
+      The 50% probability is boring and sends the walker straight to the cursor. If it
+      reaches the cursor it will halt and not restart.
+    </p>
+
+    <div class="canvas-container" id="canvas1"></div>
+
+    <p>
+      More can be done: 1. confine the cursor to the canvas; 2. restart the walker after
+      it reaches the cursor.
+    </p>
+  </div>
+
 
   <h3>Exercise 0.4: paint spatters</h3>
 
@@ -111,7 +148,7 @@
         }
 
         show() {
-          stroke(0, 100, 0);
+          stroke([0, 100, 0]);
           point(this.x, this.y);
         }
 
