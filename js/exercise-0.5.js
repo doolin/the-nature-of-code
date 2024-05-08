@@ -1,10 +1,10 @@
-const s1 = ( sketch ) => {
+const ex05 = ( sketch ) => {
   
   sketch.background_color = [245, 245, 220];
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(450, 200);
-    canvas.parent('canvas1');
+    canvas.parent('gaussian-walker');
     sketch.background(sketch.background_color);
     sketch.textSize(12);
     sketch.fill(0); // black text
@@ -12,38 +12,10 @@ const s1 = ( sketch ) => {
     sketch.y = canvas.height / 2;
   };
 
-  sketch.random_direction = () => {
-    const choice = sketch.floor(sketch.random(4));
-    if (choice >= 0 && choice < 1) {
-      sketch.x++;
-    } else if (choice >= 1 && choice < 2) {
-      sketch.y++;
-    } else if (choice >= 2 && choice < 3) {
-      sketch.x--;
-    } else {
-      sketch.y--;
-    }
-  };
-
-  sketch.weighted_direction = () => {
-    let mx = sketch.mouseX.toFixed(0)
-    let my = sketch.mouseY.toFixed(0)
-    let sx = sketch.x.toFixed(0)
-    let sy = sketch.y.toFixed(0)
-    let distance = sketch.dist(mx, my, sx, sy);
-    let weights = [mx - sx, my - sy].map(x => x / distance);
-
-    sketch.x += weights[0];
-    sketch.y += weights[1];
-  }
 
   sketch.step = () => {
-    const choice = sketch.floor(sketch.random(10));
-    if (choice === 0) {
-      sketch.weighted_direction();
-    } else {
-      sketch.random_direction();
-    }
+    sketch.x += randomGaussian(0, 3);
+    sketch.y += randomGaussian(0, 3);
   };
 
   sketch.show = () => {
@@ -71,4 +43,4 @@ const s1 = ( sketch ) => {
   };
 };
 
-let myp5 = new p5(s1);
+let gaussianWalker = new p5(ex05);

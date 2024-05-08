@@ -33,6 +33,7 @@
     <script src="./p5/p5.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="exercise-0.3.js"></script>
+    <script src="./js/exercise-0.5.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
@@ -44,11 +45,11 @@
   The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
   introduces the concept of random numbers with simple examples such as random walks.
 
-  <h3> Exercise 0.1: a random walker tending down and right</h3>
+  <h3 id="ex01"> Exercise 0.1: a random walker tending down and right</h3>
 
   <div class="canvas-container" id="random-walker"></div>
 
-  <h3> Exercise 0.2: drawing Aces</h3>
+  <h3 id="ex02"> Exercise 0.2: drawing Aces</h3>
 
   <blockquote>
     What is the probability of drawing two aces in a row from a
@@ -114,7 +115,9 @@
   </div>
 
 
-  <h3>Exercise 0.4: paint spatters</h3>
+  <h3 id="ex04">Exercise 0.4: paint spatters</h3>
+
+  <a href="https://natureofcode.com/random/#example-04-a-gaussian-distribution">Direct link</a>.
 
   <blockquote>
     Consider a simulation of paint splatter drawn as a collection of
@@ -125,6 +128,22 @@
     generate a color palette? Try creating a slider to adjust the
     standard deviation.
   </blockquote>
+
+  <h3 id="ex05">Exercise 0.5: Gaussian random walk</h3>
+
+  <a href="https://natureofcode.com/random/#exercise-05">Direct link</a>.
+
+  <blockquote>
+    A Gaussian random walk is defined as one in which the step size (how
+    far the object moves in a given direction) is generated with a normal
+    distribution. Implement this variation of the Walker class.
+  </blockquote>
+
+  <div class="canvas-container" id="gaussian-walker"></div>
+
+  <hr />
+
+  Footer TBD.
 
   <script>
       let walker;
