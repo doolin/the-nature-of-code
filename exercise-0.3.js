@@ -15,16 +15,37 @@ const s1 = ( sketch ) => {
     // sketch.ellipse(sketch.width / 2, sketch.height / 2, 50, 50);
   };
 
-  sketch.step = () => {
-    const choice = sketch.floor(sketch.random(120));
-    if (choice >= 0 && choice < 31) {
+  sketch.random_direction = () => {
+    const choice = sketch.floor(sketch.random(4));
+    if (choice >= 0 && choice < 1) {
       sketch.x++;
-    } else if (choice >= 31 && choice < 62) {
+    } else if (choice >= 1 && choice < 2) {
       sketch.y++;
-    } else if (choice >= 62 && choice < 92) {
+    } else if (choice >= 2 && choice < 3) {
       sketch.x--;
     } else {
       sketch.y--;
+    }
+  };
+
+  sketch.weighted_direction = () => {
+    let mx = sketch.mouseX.toFixed(0)
+    let my = sketch.mouseY.toFixed(0)
+    let sx = sketch.x.toFixed(0)
+    let sy = sketch.y.toFixed(0)
+    let distance = sketch.dist(mx, my, sx, sy);
+    let weights = [mx - sx, my - sy].map(x => x / distance);
+
+    sketch.x += weights[0];
+    sketch.y += weights[1];
+  }
+
+  sketch.step = () => {
+    const choice = sketch.floor(sketch.random(2));
+    if (choice === 0) {
+      sketch.random_direction();
+    } else {
+        sketch.weighted_direction();
     }
   };
 
