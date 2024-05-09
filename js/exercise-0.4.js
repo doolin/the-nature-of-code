@@ -14,7 +14,7 @@ const ex04 = ( sketch ) => {
     sketch.midpoint_x = sketch.x;
     sketch.midpoint_y = sketch.y;
 
-    stdDevSlider = sketch.createSlider(1, 50, 15);
+    stdDevSlider = sketch.createSlider(1, 50, 5);
     let slider_y = sketch.height / 2 - stdDevSlider.width / 2 + canvas.position().y;
     let slider_x = sketch.width + 20 + canvas.position().x;
     stdDevSlider.position(slider_x, slider_y);

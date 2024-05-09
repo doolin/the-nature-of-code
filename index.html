@@ -117,11 +117,22 @@
     This is several questions in one. We'll spatter some paint first.
   </p>
 
+  <p>
+    By definition, a Gaussian, or <i>normal</i> distribution is the continuous probability distribution
+    $$
+    f(x \,|\, \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{(x-\mu)}{\sigma}\right)^2}
+    $$
+    where \(\mu\) is the mean and \(\sigma\) is the standard deviation. With mean \(\mu = 0\) and
+    and standard deviation \(\sigma = 1\), the distribution is the <i>standard normal distribution</i>.
+    P5.js conveniently provides the function <code>randomGaussian()</code> to generate normally distributed
+    random numbers.In the plot below, we set \(\mu = 0\) and \(\sigma = 3\) to produce interesting patterns.
+  </p>
+
   <div class="canvas-container" id="paint-spatters"></div>
 
-  <!-- <label for="stdDevSlider">Standard Deviation:</label>
-  <input type="range" id="stdDevSlider" min="1" max="50" value="15">
-  <span id="stdDevValue">15</span> -->
+  <p>
+    Color controls TBD.
+  </p>
 
   <h3 id="ex05">Exercise 0.5: Gaussian random walk</h3>
 
@@ -134,19 +145,15 @@
   </blockquote>
 
   <p>
-    By definition, a Gaussian, or <i>normal</i> distribution is the continuous probability distribution
-    $$
-    f(x \,|\, \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{(x-\mu)}{\sigma}\right)^2}
-    $$
-    where \(\mu\) is the mean and \(\sigma\) is the standard deviation. With mean \(\mu = 0\) and
-    and standard deviation \(\sigma = 1\), the distribution is the <i>standard normal distribution</i>.
-    P5.js conveniently provides the function <code>randomGaussian()</code> to generate normally distributed
-    random numbers. In the plot below, we set \(\mu = 0\) and \(\sigma = 3\) to produce interesting patterns.
+    In the plot below, we set \(\mu = 0\) and \(\sigma = 3\) to produce interesting patterns.
   </p>
+
   <div class="canvas-container" id="gaussian-walker"></div>
 
   <p>
     A fun extension would be providing controls to adjust the mean and standard deviation.
+    Values are wrapped around all edges so that the walker always stays within a region bounded
+    by the canvas.
   </p>
  
 
@@ -161,8 +168,19 @@
     the likelihood that a value is picked equal to the value squared?
   </blockquote>
 
+  <p>
+    Setting a "probability to a quadratic function" seems vague to me. The difficulty
+    is with respect to "equal to the value squared". With floating point numbers, getting
+    equality is difficult. Drawing a bar chart with this condition (not shown) accepted values
+    less than a square of a random number uniformly distributed between 0 and 1. We'll do
+    the same here and set the step range to the returned square value.
+  </p>
   <div class="canvas-container" id="custom-distribution"></div>
 
+  <p>
+    Values are wrapped around all edges so that the walker always stays within a region bounded
+    by the canvas. It might be interesting to plot the step sizes as well.
+  </p>
 
   <h3 id="ex07">Exercise 0.7: Perlin noise</h3>
 
