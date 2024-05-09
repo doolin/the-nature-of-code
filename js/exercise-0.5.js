@@ -16,6 +16,20 @@ const ex05 = ( sketch ) => {
   sketch.step = () => {
     sketch.x += randomGaussian(0, 3);
     sketch.y += randomGaussian(0, 3);
+
+    // Wrap x around
+    if (sketch.x >= sketch.width) {
+      sketch.x = sketch.x % sketch.width;
+    } else if (sketch.x < 0) {
+      sketch.x = (sketch.x % sketch.width) + sketch.width;
+    }
+
+    // Wrap y around
+    if (sketch.y >= sketch.height) {
+      sketch.y = sketch.y % sketch.height;
+    } else if (sketch.y < 0) {
+      sketch.y = (sketch.y % sketch.height) + sketch.height;
+    }
   };
 
   sketch.show = () => {
