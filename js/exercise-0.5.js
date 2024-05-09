@@ -12,7 +12,6 @@ const ex05 = ( sketch ) => {
     sketch.y = canvas.height / 2;
   };
 
-
   sketch.step = () => {
     sketch.x += randomGaussian(0, 3);
     sketch.y += randomGaussian(0, 3);
