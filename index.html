@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Narure of Code</title>
+    <title>The Nature of Code</title>
     <style>
       body {
           justify-content: center;
@@ -11,14 +11,25 @@
           padding: auto;
           font-family: Arial, sans-serif;
           width: 580px;
+          background-color: rgb(250, 250, 246); // #EBEBD2
       }
       blockquote {
-        color: #404040; /* Dark grey color */
+        color: #909090; /* Dark grey color */
         font-style: italic; /* Optional: to differentiate blockquote from other text */
+      }
+      p {
+          color: #707070; /* Dark grey color */
       }
       .text-content {
           width: 580px;
           text-align: left;
+          color: #707070; /* Dark grey color */
+      }
+      h1 {
+        color: #666;
+      }
+      h2, h3 {
+          color: #666; /* Dark grey color */
       }
       .canvas-container {
           display: flex;
@@ -33,17 +44,22 @@
     <script src="./p5/p5.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="exercise-0.3.js"></script>
+    <script src="./js/exercise-0.4.js"></script>
     <script src="./js/exercise-0.5.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
 
-  Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+  <p>
+    Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+  </p>
 
   <h2>Chapter 0 - Randomness</h2>
 
-  The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
-  introduces the concept of random numbers with simple examples such as random walks.
+  <p>
+    The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
+    introduces the concept of random numbers with simple examples such as random walks.
+  </p>
 
   <h3 id="ex01"> Exercise 0.1: a random walker tending down and right</h3>
 
@@ -128,6 +144,16 @@
     generate a color palette? Try creating a slider to adjust the
     standard deviation.
   </blockquote>
+
+  <p>
+    This is several questions in one. We'll spatter some paint first.
+  </p>
+
+  <div class="canvas-container" id="paint-spatters"></div>
+
+  <!-- <label for="stdDevSlider">Standard Deviation:</label>
+  <input type="range" id="stdDevSlider" min="1" max="50" value="15">
+  <span id="stdDevValue">15</span> -->
 
   <h3 id="ex05">Exercise 0.5: Gaussian random walk</h3>
 
