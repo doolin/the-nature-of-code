@@ -27,6 +27,7 @@
       }
       h1 {
         color: #666;
+        text-align: center;
       }
       h2, h3 {
           color: #666; /* Dark grey color */
@@ -53,6 +54,9 @@
 
   <p>
     Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+    The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library. At the moment,
+    all the HTML, CSS, and JavaScript is hand-rolled. The page is deployed to S3 via the AWS command line
+    tool invoked from a Makefile, and served by CloudFront. S3 and CloudFront are configured with Terraform.
   </p>
 
   <h2>Chapter 0 - Randomness</h2>

@@ -4,32 +4,63 @@ const ex06 = ( sketch ) => {
   let randomCounts = [];
 
   sketch.setup = () => {
-    createCanvas(480, 200);
+    let canvas = sketch.createCanvas(480, 200);
     canvas.parent('custom-distribution');
-    // sketch.background(sketch.background_color);
+    sketch.background(sketch.background_color);
+    sketch.x = canvas.width / 2;
+    sketch.y = canvas.height / 2;
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 100; i++) {
       randomCounts[i] = 0;
     }
   }
   
-  sketch.draw = () => {
-    background(255);
-  
+  sketch.barGraph = () => {
     // Pick a random number and increase the count
     let index = int(sketch.acceptreject() * randomCounts.length);
     randomCounts[index]++;
   
     // Draw a rectangle to graph results
-    stroke(0);
-    strokeWeight(2);
-    fill(127);
+    sketch.stroke(0, 100, 0);
+    sketch.strokeWeight(2);
+    sketch.fill(0, 127, 0);
   
-    let w = width / randomCounts.length;
+    let w = sketch.width / randomCounts.length;
   
     for (let x = 0; x < randomCounts.length; x++) {
-      rect(x * w, height - randomCounts[x], w - 1, randomCounts[x]);
+      sketch.rect(x * w, sketch.height - randomCounts[x], w - 1, randomCounts[x]);
     }
+  }
+
+  sketch.step = () => {
+    let r = sketch.floor(sketch.random(4));
+    switch (r) {
+      case 0:
+        sketch.x++;
+        break;
+      case 1:
+        sketch.x--;
+        break;
+      case 2:
+        sketch.y++;
+        break;
+      case 3:
+        sketch.y--;
+        break;
+    }
+  }
+
+  sketch.walker = () => {
+    // x = sketch.constrain(x, 0, sketch.width - 1);
+    // y = sketch.constrain(y, 0, sketch.height - 1);
+    sketch.step();
+    sketch.stroke(0, 100, 0);
+    sketch.point(sketch.x, sketch.y);
+  }
+
+  sketch.draw = () => {
+    // sketch.barGraph();
+    sketch.walker();
   }
   
   // An algorithm for picking a random number based on monte carlo method
@@ -37,14 +68,13 @@ const ex06 = ( sketch ) => {
   sketch.acceptreject = () => {
     // We do this “forever” until we find a qualifying random value.
     while (true) {
-      // Pick a random value.
       let r1 = random(1);
-      // Assign a probability.
-      let probability = r1;
+      let probability = r1*r1;
+
       // Pick a second random value.
       let r2 = random(1);
   
-      //{!3} Does it qualify?  If so, we’re done!
+      // Pick the actual value. {!3} Does it qualify?  If so, we’re done!
       if (r2 < probability) {
         return r1;
       }
