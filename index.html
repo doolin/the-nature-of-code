@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/basic.css">
     <script src="./p5/p5.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/exercise-0.1.js"></script>
     <script src="./js/exercise-0.3.js"></script>
     <script src="./js/exercise-0.4.js"></script>
     <script src="./js/exercise-0.5.js"></script>
@@ -197,48 +198,10 @@
 
   <hr />
 
-  Footer TBD.
-
-  <script>
-      let walker;
-
-      function setup() {
-        let canvas = createCanvas(450, 240);
-        canvas.parent('random-walker');
-        background(245, 245, 220);
-        walker = new Walker();
-      }
-
-      function draw() {
-        walker.step();
-        walker.show();
-      }
-
-      class Walker {
-        constructor() {
-          this.x = width / 2;
-          this.y = height / 2;
-        }
-
-        show() {
-          stroke([0, 100, 0]);
-          point(this.x, this.y);
-        }
-
-        // Apparenently this continues even when past the canvas.
-        step() {
-          const choice = floor(random(120));
-          if (choice >= 0 && choice < 31) {
-            this.x++;
-          } else if (choice >= 31 && choice < 62) {
-            this.y++;
-          } else if (choice >= 62 && choice < 92) {
-            this.x--;
-          } else {
-            this.y--;
-          }
-        }
-      }
-    </script>
+  <footer>
+    <p>
+      Footer TBD.
+    </p>
+  </footer>
 </body>
 </html>
