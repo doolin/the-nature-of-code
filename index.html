@@ -33,7 +33,18 @@
 
   <h3 id="ex01"> Exercise 0.1: a random walker tending down and right</h3>
 
+  <p>
+    Steps for the random walk were biased towards the right at 26%, down at 26%,
+    up and left at 24% each. Just this slight bias results in a clear trend,
+  can be seen by letting the animation run for a few minutes.
+  </p>
+
   <div class="canvas-container" id="random-walker"></div>
+
+  <p>
+    The step size is 1 pixel, and the walker is not confined to the region defined
+    by the cnavas (cream colored panel above).
+  </p>
 
   <h3 id="ex02"> Exercise 0.2: drawing Aces</h3>
 
@@ -54,7 +65,11 @@
     <li><b>Without replacement</b>, First draw: \(\frac{4}{52}\); second draw: \(\frac{3}{51}\).
       Probability of drawing two aces in a row:
       $$\frac{4}{52} \times \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}$$</li>
-    </oL>
+  </oL>
+
+  <p>
+    Again, nothing new here, but a fun way to add a bit of MathJax.
+  </p>
 
   <h3 id="ex03">Exercise 0.3: random walker with 4 choices</h3>
 
@@ -148,6 +163,7 @@
 
   <p>
     In the plot below, we set \(\mu = 0\) and \(\sigma = 3\) to produce interesting patterns.
+    Two walkers are defined, one in green, the other in blue.
   </p>
 
   <div class="canvas-container" id="gaussian-walker"></div>
@@ -194,7 +210,41 @@
     the noise() function to the walker’s step size instead.
   </blockquote>
 
+  <p>
+    Perlin noise provides a way to generate smpoth random values. The walker below
+    demonstrates the effect. The general idea is that the next value depends on
+    the current value in some way. The result is that the walker has much longer
+    "streaks" moving in a single direction.
+  </p>
+
   <div class="canvas-container" id="perlin-walker"></div>
+
+  <p>
+    This was straightforward, and leveraged the example code provided by the book.
+    Using discs instead of points results in an interesting vusual effect. The built-in
+    <code>noise()</code> function constrained the values to the region, so there is no
+    need to wrap positions
+  </p>
+
+  <h3 id="ex08">Exercise 0.8 parameterizing noise details</h3>
+
+  <blockquote>
+    Play with color, noiseDetail(), and the rate at which xoff and yoff are incremented to achieve different visual effects.
+  </blockquote>
+
+
+  <h3 id="ex09">Exercise 0.9 animate 2D noise</h3>
+
+  <blockquote>
+    Add a third argument to noise that increments once per cycle through draw() to animate the 2D noise.
+  </blockquote>
+
+  <h3 id="ex010">Exercise 0.10 render 2D noise as elevations</h3>
+
+  <blockquote>
+    Use the noise values as the elevations of a landscape.
+  </blockquote>
+
 
   <hr />
 

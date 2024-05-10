@@ -25,12 +25,12 @@
       }
 
       step() {
-          const choice = floor(random(120));
-          if (choice >= 0 && choice < 31) {
+          const choice = floor(random(100));
+          if (choice >= 0 && choice < 26) {
               this.x++;
-          } else if (choice >= 31 && choice < 62) {
+          } else if (choice >= 26 && choice < 52) {
               this.y++;
-          } else if (choice >= 62 && choice < 92) {
+          } else if (choice >= 52 && choice < 76) {
               this.x--;
           } else {
               this.y--;
