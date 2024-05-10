@@ -1,4 +1,4 @@
-const ex06 = ( sketch ) => {
+const ex07 = ( sketch ) => {
   
   sketch.background_color = [245, 245, 220];
   let randomCounts = [];
@@ -64,8 +64,6 @@ const ex06 = ( sketch ) => {
     sketch.walker();
   }
   
-  // An algorithm for picking a random number based on monte carlo method
-  // Here probability is determined by formula y = x^2
   sketch.acceptreject = () => {
     // We do this “forever” until we find a qualifying random value.
     while (true) {
@@ -83,4 +81,4 @@ const ex06 = ( sketch ) => {
   }
 };
 
-let customDistribution = new p5(ex06);
+let customDistribution = new p5(ex07);
