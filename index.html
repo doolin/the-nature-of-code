@@ -15,15 +15,17 @@
     <script src="./js/exercise-0.7.js"></script>
     <script src="./js/time-series.js"></script>
     <script src="./js/qualified-values.js"></script>
+    <script src="./js/exercise-0.8.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
 
   <p>
     Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
-    The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library. At the moment,
-    all the HTML, CSS, and JavaScript is hand-rolled. The page is deployed to S3 via the AWS command line
-    tool invoked from a Makefile, and served by CloudFront. S3 and CloudFront are configured with Terraform.
+    The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library
+    (<a href="https://p5js.org/reference/">reference documents for p5</a>). At the moment, all the HTML,
+    CSS, and JavaScript is hand-rolled. The page is deployed to S3 via the AWS command line tool invoked
+    from a Makefile, and served by CloudFront. S3 and CloudFront are configured with Terraform.
   </p>
 
   <h2>Chapter 0 - Randomness</h2>
@@ -248,15 +250,25 @@
   <h3 id="ex08">Exercise 0.8 parameterizing noise details</h3>
 
   <blockquote>
-    Play with color, noiseDetail(), and the rate at which xoff and yoff are incremented to achieve different visual effects.
+    Play with color, noiseDetail(), and the rate at which xoff and yoff
+    are incremented to achieve different visual effects.
   </blockquote>
 
+  <p>
+    Exercises 0.8 and 0.9 are combined in the example below.
+  </p>
 
-  <h3 id="ex09">Exercise 0.9 animate 2D noise</h3>
+  <p>
+    This <a href="https://thecodingtrain.com/tracks/pixels/more-p5/pixel-array">Pixel
+    arrays at Coding Train</a> video was really helpful in understanding how 
+    the rendering works.
+  </p>
 
-  <blockquote>
-    Add a third argument to noise that increments once per cycle through draw() to animate the 2D noise.
-  </blockquote>
+  <div class="canvas-container" id="perlin-color"></div>
+
+  <p>
+    TODO: add some controls.
+  </p>
 
   <h3 id="ex010">Exercise 0.10 render 2D noise as elevations</h3>
 
