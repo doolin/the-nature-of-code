@@ -5,6 +5,7 @@ const ex08 = ( sketch ) => {
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 200);
     canvas.parent('perlin-color');
+    sketch.pixelDensity(1);
     sketch.background(sketch.background_color);
     sketch.width = canvas.width;
     sketch.height = canvas.height;
@@ -16,18 +17,16 @@ const ex08 = ( sketch ) => {
   }
 
   sketch.draw = () => {
-    sketch.loadPixels(); // Load the current pixel data
-
+    sketch.loadPixels();
     let xoff = 0.0;
-    for (let x = 0; x < 600; x++) {
+
+    for (let x = 0; x < sketch.width; x++) {
       let yoff = 0.0;
 
-      for (let y = 0; y < 700; y++) {
-        // let bright = sketch.map(noise(xoff, yoff), 0, 1, 0, 255);
-        let bright = map(noise(xoff, yoff), 0, 1, 0, 255);
+      for (let y = 0; y < sketch.height; y++) {
+        let bright = sketch.map(noise(xoff, yoff), 0, 1, 0, 255);
         let index = (x + (y * sketch.width)) * 4;
 
-        // Set the red, green, and blue values
         sketch.pixels[index] = bright;
         sketch.pixels[index + 1] = bright;
         sketch.pixels[index + 2] = bright;
