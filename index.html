@@ -13,6 +13,8 @@
     <script src="./js/exercise-0.5.js"></script>
     <script src="./js/exercise-0.6.js"></script>
     <script src="./js/exercise-0.7.js"></script>
+    <script src="./js/time-series.js"></script>
+    <script src="./js/qualified-values.js"></script>
 </head>
 <body>
   <h1>The Nature of Code</h1>
@@ -200,6 +202,11 @@
     by the canvas. It might be interesting to plot the step sizes as well.
   </p>
 
+  <p>
+    TODO: write some explanation here.
+  </p>
+  <div class="canvas-container" id="qualified-values"></div>
+
   <h3 id="ex07">Exercise 0.7: Perlin noise</h3>
 
   <a href="https://natureofcode.com/random/#exercise-07">Direct link</a>.
@@ -224,6 +231,18 @@
     Using discs instead of points results in an interesting vusual effect. The built-in
     <code>noise()</code> function constrained the values to the region, so there is no
     need to wrap positions
+  </p>
+
+  <p>
+    Just for fun, here is a smooth time series using noise:
+  </p>
+
+  <div class="canvas-container" id="perlin-timeseries"></div>
+
+  <p>
+    This sort of function is useful for application load testing. It's smoother
+    than random values, more random than a sine wave, and is more plausible
+    then either for simulating user traffic to a web application.
   </p>
 
   <h3 id="ex08">Exercise 0.8 parameterizing noise details</h3>
