@@ -34,3 +34,12 @@ canvas {
   justify-content: center;
   border: 3px solid #ccc; /* Optional: adds a light border around the canvas */
 }
+div.doolin {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+.shamrock {
+  color: #008000;
+  font-size: 110%;
+}
