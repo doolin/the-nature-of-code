@@ -4,7 +4,7 @@ const ex010 = ( sketch ) => {
   let width = 480;
   let height = 200;
   let rows = 3;
-  let cols = 2;
+  let cols = 3;
   let cellWidth = width / cols;
   let cellHeight = height / rows;
   let grid;
@@ -12,6 +12,7 @@ const ex010 = ( sketch ) => {
 
   make2DArray = (cols, rows) => {
     let arr = new Array(cols);
+    console.log(cols);
 
     for (let i = 0; i < arr.length; i++) {
         arr[i] = new Array(rows);
@@ -39,7 +40,7 @@ const ex010 = ( sketch ) => {
     for (let i = 0; i < cols; i++) {
       let yoff = 0;
       for (let j = 0; j < rows; j++) {
-        sketch.z[i][j] = 100; // map(noise(xoff, yoff,sketch.zoff), 0, 1, -120, 120);
+        sketch.z[i][j] = map(noise(xoff, yoff,sketch.zoff), 0, 1, -120, 120);
         yoff += 0.1;
       }
       xoff += 0.1;
@@ -69,15 +70,27 @@ const ex010 = ( sketch ) => {
   }
 
   sketch.drawLandscape = () => {
-    sketch.stroke(100);
+    sketch.stroke(200, 0, 0);
+    sketch.strokeWeight(2);
 
-    sketch.circle(0, 0, 10);
+    sketch.circle(0, 0, 20);
+    sketch.calculate();
+    sketch.translate(0, 20, -200);
+
     sketch.beginShape(QUAD_STRIP);
+
     for (let x = 0; x < sketch.z.length; x++) {
       for (let y = 0; y < sketch.z[x].length; y++) {
-        sketch.vertex(x*sketch.scl, y*sketch.scl, sketch.z[x][y]);
+        // sketch.z[x][y] = map(noise(sketch.z[x][y], 1, 1), -120, 120, 0, 255);
+        // sketch.z[x][y] = map(noise(4, 1, 1), -120, 120, 0, 255);
+        let xCoordinate = x*sketch.scl-sketch.width/2;
+        let yCoordinate = y*sketch.scl-sketch.height/2;
+
+        sketch.vertex(xCoordinate, yCoordinate, 100); // sketch.z[x][y]);
+        sketch.vertex(xCoordinate + sketch.scl, yCoordinate, 100); // sketch.z[x+1][y]);
       }
     }
+
     sketch.endShape();
   }
 
