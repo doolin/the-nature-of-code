@@ -70,12 +70,17 @@ const ex010 = ( sketch ) => {
   }
 
   sketch.drawLandscape = () => {
+    sketch.background(sketch.background_color);
     sketch.stroke(200, 0, 0);
     sketch.strokeWeight(2);
 
     sketch.circle(0, 0, 20);
     sketch.calculate();
+    sketch.push();
+
     sketch.translate(0, 20, -200);
+    sketch.rotateX(PI / 3);
+    sketch.rotateZ(theta);
 
     sketch.beginShape(QUAD_STRIP);
 
@@ -92,20 +97,13 @@ const ex010 = ( sketch ) => {
     }
 
     sketch.endShape();
+
+    sketch.pop();
+    theta += 0.0025;
   }
 
   sketch.draw = () => {
     sketch.drawLandscape();
-    // This is all from the book.
-    // sketch.calculate();
-    // sketch.background(255);
-    // sketch.push();
-    // sketch.translate(0, 20, -200);
-    // sketch.rotateX(PI / 3);
-    // sketch.rotateZ(theta);
-    // sketch.render();
-    // sketch.pop();
-    // theta += 0.0025;
   }
 };
 
