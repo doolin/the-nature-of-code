@@ -1,72 +1,99 @@
-const ex08 = ( sketch ) => {
+const ex010 = ( sketch ) => {
   sketch.background_color = [245, 245, 220];
-  let t = 0.0;
+
+  let width = 480;
+  let height = 200;
+  let rows = 3;
+  let cols = 2;
+  let cellWidth = width / cols;
+  let cellHeight = height / rows;
+  let grid;
+  let theta = 0.0;
+
+  make2DArray = (cols, rows) => {
+    let arr = new Array(cols);
+
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(rows);
+    }
+    console.log(arr);
+    return arr;
+  }
 
   sketch.setup = () => {
-    let canvas = sketch.createCanvas(480, 200);
-    canvas.parent('perlin-color');
-    sketch.pixelDensity(1);
+    let canvas = sketch.createCanvas(width, height, sketch.WEBGL);
+    canvas.parent('perlin-terrain');
+    // sketch.pixelDensity(1);
     sketch.background(sketch.background_color);
     sketch.width = canvas.width;
     sketch.height = canvas.height;
+    sketch.z = make2DArray(cols, rows); // z is what the source uses.
+    sketch.zoff = 0;
+    sketch.scl = 20; // cell size
 
     // sketch.noLoop();
   }
 
-  // sketch.draw = () => {
-  //   sketch.loadPixels();
-  //   let xoff = 0.0;
-
-  //   for (let x = 0; x < sketch.width; x++) {
-  //     let yoff = 0.0;
-
-  //     for (let y = 0; y < sketch.height; y++) {
-  //       sketch.noiseDetail(4, 0.25);
-  //       // let bright = sketch.map(noise(xoff, yoff), 0, 1, 0, 255);
-  //       let index = (x + (y * sketch.width)) * 4;
-
-  //       sketch.pixels[index + 0] = x; // sketch.map(noise(xoff, yoff, 0.1), 0, 1, 0, 0); // random(255));
-  //       sketch.pixels[index + 1] = random(120, 200) ; // sketch.map(noise(xoff, yoff, 0.1), 0, 1, 0, random(255));
-  //       sketch.pixels[index + 2] = y; // sketch.map(noise(xoff, yoff, 0.1), 0, 1, 0, random(255));
-  //       sketch.pixels[index + 3] = 255; // alpha
-  //       yoff += 0.01;
-  //     }
-  //     xoff += 0.01;
-  //   }
-  //   sketch.updatePixels();
-  //   sketch.noFill();
-  // }
-
-  sketch.draw = () => {
-    sketch.loadPixels();
-    let scale = 0.005;
-    // let scale = 0.0005;
-    let step = 0.02;
-    
-    for (let x = 0; x < sketch.width; x++) {
-      for (let y = 0; y < sketch.height; y++) {
-        let index = (x + y * sketch.width) * 4;
-        
-        // Using Perlin noise to generate smooth color transitions
-        let r = sketch.noise(x * scale, y * scale, sketch.frameCount * step) * 255;
-        let g = sketch.noise(x * scale + 400, y * scale + 400, sketch.frameCount * step) * 255;
-        let b = sketch.noise(x * scale + 800, y * scale + 800, sketch.frameCount * step) * 255;
-        
-        // Adjusting alpha based on noise for cloud-like appearance
-        let alpha = sketch.noise(x * 0.01, y * 0.01, sketch.frameCount * 0.01) * 155 + 100; // Alpha from 100 to 255
-        
-        // Set the RGBA values
-        sketch.pixels[index + 0] = r;
-        sketch.pixels[index + 1] = g;
-        sketch.pixels[index + 2] = b;
-        sketch.pixels[index + 3] = alpha;
+  sketch.calculate = () => {
+    let xoff = 0;
+    for (let i = 0; i < cols; i++) {
+      let yoff = 0;
+      for (let j = 0; j < rows; j++) {
+        sketch.z[i][j] = 100; // map(noise(xoff, yoff,sketch.zoff), 0, 1, -120, 120);
+        yoff += 0.1;
       }
+      xoff += 0.1;
     }
-
-    sketch.updatePixels();
-    sketch.noFill();
+    sketch.zoff+=0.01;
   }
 
+  sketch.render = () => {
+     // Every cell is an individual quad
+     for (let x = 0; x < sketch.z.length-1; x++) {
+      beginShape(QUAD_STRIP);
+      for (let y = 0; y < sketch.z[x].length; y++) {
+        // one quad at a time
+        // each quad's color is determined by the height value at each vertex
+        // (clean this part up)
+        sketch.stroke(0);
+        let currentElevation = sketch.z[x][y];
+        let currentShade = map(currentElevation, -120, 120, 0, 255);
+        sketch.fill(currentShade, 255);
+        let xCoordinate = x*sketch.scl-sketch.width/2;
+        let yCoordinate = y*sketch.scl-sketch.height/2;
+        sketch.vertex(xCoordinate, yCoordinate, sketch.z[x][y]);
+        sketch.vertex(xCoordinate + sketch.scl, yCoordinate, sketch.z[x+1][y]);
+      }
+      endShape();
+    }
+  }
+
+  sketch.drawLandscape = () => {
+    sketch.stroke(100);
+
+    sketch.circle(0, 0, 10);
+    sketch.beginShape(QUAD_STRIP);
+    for (let x = 0; x < sketch.z.length; x++) {
+      for (let y = 0; y < sketch.z[x].length; y++) {
+        sketch.vertex(x*sketch.scl, y*sketch.scl, sketch.z[x][y]);
+      }
+    }
+    sketch.endShape();
+  }
+
+  sketch.draw = () => {
+    sketch.drawLandscape();
+    // This is all from the book.
+    // sketch.calculate();
+    // sketch.background(255);
+    // sketch.push();
+    // sketch.translate(0, 20, -200);
+    // sketch.rotateX(PI / 3);
+    // sketch.rotateZ(theta);
+    // sketch.render();
+    // sketch.pop();
+    // theta += 0.0025;
+  }
 };
 
-let perlinColor = new p5(ex08);
+let perlinTerrain = new p5(ex010);
