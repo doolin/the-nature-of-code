@@ -3,8 +3,8 @@ const ex010 = ( sketch ) => {
 
   let width = 480;
   let height = 200;
-  let rows = 3;
-  let cols = 3;
+  let rows = 5;
+  let cols = 4;
   let cellWidth = width / cols;
   let cellHeight = height / rows;
   let grid;
@@ -60,8 +60,8 @@ const ex010 = ( sketch ) => {
         let currentElevation = sketch.z[x][y];
         let currentShade = map(currentElevation, -120, 120, 0, 255);
         sketch.fill(currentShade, 255);
-        let xCoordinate = x*sketch.scl-sketch.width/2;
-        let yCoordinate = y*sketch.scl-sketch.height/2;
+        let xCoordinate = x*sketch.scl; // -sketch.width/2;
+        let yCoordinate = y*sketch.scl; // -sketch.height/2;
         sketch.vertex(xCoordinate, yCoordinate, sketch.z[x][y]);
         sketch.vertex(xCoordinate + sketch.scl, yCoordinate, sketch.z[x+1][y]);
       }
@@ -79,27 +79,38 @@ const ex010 = ( sketch ) => {
     sketch.push();
 
     sketch.translate(0, 20, -200);
-    sketch.rotateX(PI / 3);
-    sketch.rotateZ(theta);
+    // sketch.rotateX(PI / 3);
+    // sketch.rotateZ(theta);
 
     sketch.beginShape(QUAD_STRIP);
 
-    for (let x = 0; x < sketch.z.length; x++) {
-      for (let y = 0; y < sketch.z[x].length; y++) {
+    // for (let x = 0; x < sketch.z.length; x++) {
+    //   for (let y = 0; y < sketch.z[x].length; y++) {
+    for (let x = 0; x < cols; x++) {
+      for (let y = 0; y < rows; y++) {
+            // console.log(x, y, sketch.z)
         // sketch.z[x][y] = map(noise(sketch.z[x][y], 1, 1), -120, 120, 0, 255);
         // sketch.z[x][y] = map(noise(4, 1, 1), -120, 120, 0, 255);
         let xCoordinate = x*sketch.scl-sketch.width/2;
         let yCoordinate = y*sketch.scl-sketch.height/2;
 
+        curr_x = xCoordinate;
+        curr_y = yCoordinate;
+        next_x = xCoordinate + sketch.scl;
+        next_y = yCoordinate;
+
+        // console.log(curr_x, curr_y, next_x, next_y);
+
         sketch.vertex(xCoordinate, yCoordinate, 100); // sketch.z[x][y]);
         sketch.vertex(xCoordinate + sketch.scl, yCoordinate, 100); // sketch.z[x+1][y]);
       }
+      // debugger
     }
 
     sketch.endShape();
 
     sketch.pop();
-    theta += 0.0025;
+    // theta += 0.0025;
   }
 
   sketch.draw = () => {
