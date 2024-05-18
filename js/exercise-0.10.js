@@ -30,7 +30,7 @@ const ex010 = ( sketch ) => {
     sketch.height = canvas.height;
     sketch.z = make2DArray(cols, rows); // z is what the source uses.
     sketch.zoff = 0;
-    sketch.scl = 20; // cell size
+    sketch.scl = 10; // cell size
 
     // sketch.noLoop();
   }
@@ -113,83 +113,30 @@ const ex010 = ( sketch ) => {
     // theta += 0.0025;
   }
 
-  sketch.drawSingleQuad = () => {
-    sketch.background(sketch.background_color);
-    sketch.stroke(200, 0, 0);
-    sketch.strokeWeight(2);
-    sketch.fill(100, 0, 0, 100);
-
-    sketch.circle(0, 0, 20);
-    sketch.calculate();
-    sketch.push();
-    sketch.noFill();
-
-    // sketch.translate(0, 20, -200);
-    // sketch.rotateX(PI / 3);
-    // sketch.rotateZ(theta);
-
-    sketch.beginShape();
-
-    // let xCoordinate = x*sketch.scl-sketch.width/2;
-    // let yCoordinate = y*sketch.scl-sketch.height/2;
-
-    let x_0 = 0;
-    let y_0 = 0;
-    let x_1 = sketch.scl;
-    let y_1 = 0;
-    let x_2 = sketch.scl;
-    let y_2 = sketch.scl;
-    let x_3 = 0;
-    let y_3 = sketch.scl;
-
-    sketch.vertex(x_0, y_0, 0);
-    sketch.vertex(x_1, y_1, 0);
-    sketch.vertex(x_2, y_2, 0);
-    sketch.vertex(x_3, y_3, 0);
-
-    sketch.endShape(CLOSE);
-
-    sketch.pop();
-    // theta += 0.0025;
-  }
-
   sketch.drawQuadStrip = () => {
     sketch.background(sketch.background_color);
     sketch.stroke(0, 100, 0);
-    sketch.strokeWeight(2);
-    sketch.fill(0, 150, 0, 100);
+    sketch.strokeWeight(1);
+    sketch.fill(0, 170, 0, 100);
 
-    let y_0 = 0*sketch.scl;
-    let y_1 = 1*sketch.scl;
-    let y_2 = 2*sketch.scl;
-
-    // TODO: next step is drawing a strip in the y direction.
-    sketch.beginShape(QUAD_STRIP);
-    for (let x = 0; x < 2; x++) {
+    for (let x = 0; x < 7; x++) {
       let x_0 = x*sketch.scl;
+      let x_1 = (x+1)*sketch.scl;
 
-      sketch.vertex(x_0, y_0, 0);
-      sketch.vertex(x_0, y_1, 0);
+      sketch.beginShape(QUAD_STRIP);
+
+      for (let y = 0; y < 5; y++) {
+        let y_0 = y*sketch.scl;
+
+        sketch.vertex(x_0, y_0, 0);
+        sketch.vertex(x_1, y_0, 0);  
+      }
+      sketch.endShape();
     }
-    sketch.endShape();
-
-    // sketch.beginShape(QUAD_STRIP);
-    // sketch.vertex(x_0, y_1, 0);
-    // sketch.vertex(x_0, y_2, 0);
-    // sketch.vertex(x_1, y_1, 0);
-    // sketch.vertex(x_1, y_2, 0);
-    // sketch.vertex(x_2, y_1, 0);
-    // sketch.vertex(x_2, y_2, 0);
-    // sketch.vertex(x_3, y_1, 0);
-    // sketch.vertex(x_3, y_2, 0);
-    // sketch.endShape();
-
   }
 
   sketch.draw = () => {
     sketch.drawQuadStrip();
-    // sketch.drawSingleQuad();
-    // sketch.drawLandscape();
   }
 };
 
