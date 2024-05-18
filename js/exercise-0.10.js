@@ -159,36 +159,30 @@ const ex010 = ( sketch ) => {
     sketch.strokeWeight(2);
     sketch.fill(0, 150, 0, 100);
 
-
-    let x_0 = 0*sketch.scl;
-    let x_1 = 1*sketch.scl;
-    let x_2 = 2*sketch.scl;
-    let x_3 = 3*sketch.scl;
     let y_0 = 0*sketch.scl;
     let y_1 = 1*sketch.scl;
     let y_2 = 2*sketch.scl;
 
+    // TODO: next step is drawing a strip in the y direction.
     sketch.beginShape(QUAD_STRIP);
-    sketch.vertex(x_0, y_0, 0);
-    sketch.vertex(x_0, y_1, 0);
-    sketch.vertex(x_1, y_0, 0);
-    sketch.vertex(x_1, y_1, 0);
-    sketch.vertex(x_2, y_0, 0);
-    sketch.vertex(x_2, y_1, 0);
-    sketch.vertex(x_3, y_0, 0);
-    sketch.vertex(x_3, y_1, 0);
+    for (let x = 0; x < 2; x++) {
+      let x_0 = x*sketch.scl;
+
+      sketch.vertex(x_0, y_0, 0);
+      sketch.vertex(x_0, y_1, 0);
+    }
     sketch.endShape();
 
-    sketch.beginShape(QUAD_STRIP);
-    sketch.vertex(x_0, y_1, 0);
-    sketch.vertex(x_0, y_2, 0);
-    sketch.vertex(x_1, y_1, 0);
-    sketch.vertex(x_1, y_2, 0);
-    sketch.vertex(x_2, y_1, 0);
-    sketch.vertex(x_2, y_2, 0);
-    sketch.vertex(x_3, y_1, 0);
-    sketch.vertex(x_3, y_2, 0);
-    sketch.endShape();
+    // sketch.beginShape(QUAD_STRIP);
+    // sketch.vertex(x_0, y_1, 0);
+    // sketch.vertex(x_0, y_2, 0);
+    // sketch.vertex(x_1, y_1, 0);
+    // sketch.vertex(x_1, y_2, 0);
+    // sketch.vertex(x_2, y_1, 0);
+    // sketch.vertex(x_2, y_2, 0);
+    // sketch.vertex(x_3, y_1, 0);
+    // sketch.vertex(x_3, y_2, 0);
+    // sketch.endShape();
 
   }
 
