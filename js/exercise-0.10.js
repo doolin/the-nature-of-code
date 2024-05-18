@@ -3,8 +3,8 @@ const ex010 = ( sketch ) => {
 
   let width = 480;
   let height = 200;
-  let rows = 5;
-  let cols = 4;
+  let rows = 2;
+  let cols = 2;
   let cellWidth = width / cols;
   let cellHeight = height / rows;
   let grid;
@@ -113,8 +113,89 @@ const ex010 = ( sketch ) => {
     // theta += 0.0025;
   }
 
+  sketch.drawSingleQuad = () => {
+    sketch.background(sketch.background_color);
+    sketch.stroke(200, 0, 0);
+    sketch.strokeWeight(2);
+    sketch.fill(100, 0, 0, 100);
+
+    sketch.circle(0, 0, 20);
+    sketch.calculate();
+    sketch.push();
+    sketch.noFill();
+
+    // sketch.translate(0, 20, -200);
+    // sketch.rotateX(PI / 3);
+    // sketch.rotateZ(theta);
+
+    sketch.beginShape();
+
+    // let xCoordinate = x*sketch.scl-sketch.width/2;
+    // let yCoordinate = y*sketch.scl-sketch.height/2;
+
+    let x_0 = 0;
+    let y_0 = 0;
+    let x_1 = sketch.scl;
+    let y_1 = 0;
+    let x_2 = sketch.scl;
+    let y_2 = sketch.scl;
+    let x_3 = 0;
+    let y_3 = sketch.scl;
+
+    sketch.vertex(x_0, y_0, 0);
+    sketch.vertex(x_1, y_1, 0);
+    sketch.vertex(x_2, y_2, 0);
+    sketch.vertex(x_3, y_3, 0);
+
+    sketch.endShape(CLOSE);
+
+    sketch.pop();
+    // theta += 0.0025;
+  }
+
+  sketch.drawQuadStrip = () => {
+    sketch.background(sketch.background_color);
+    sketch.stroke(0, 100, 0);
+    sketch.strokeWeight(2);
+    sketch.fill(0, 150, 0, 100);
+
+
+    let x_0 = 0*sketch.scl;
+    let x_1 = 1*sketch.scl;
+    let x_2 = 2*sketch.scl;
+    let x_3 = 3*sketch.scl;
+    let y_0 = 0*sketch.scl;
+    let y_1 = 1*sketch.scl;
+    let y_2 = 2*sketch.scl;
+
+    sketch.beginShape(QUAD_STRIP);
+    sketch.vertex(x_0, y_0, 0);
+    sketch.vertex(x_0, y_1, 0);
+    sketch.vertex(x_1, y_0, 0);
+    sketch.vertex(x_1, y_1, 0);
+    sketch.vertex(x_2, y_0, 0);
+    sketch.vertex(x_2, y_1, 0);
+    sketch.vertex(x_3, y_0, 0);
+    sketch.vertex(x_3, y_1, 0);
+    sketch.endShape();
+
+    sketch.beginShape(QUAD_STRIP);
+    sketch.vertex(x_0, y_1, 0);
+    sketch.vertex(x_0, y_2, 0);
+    sketch.vertex(x_1, y_1, 0);
+    sketch.vertex(x_1, y_2, 0);
+    sketch.vertex(x_2, y_1, 0);
+    sketch.vertex(x_2, y_2, 0);
+    sketch.vertex(x_3, y_1, 0);
+    sketch.vertex(x_3, y_2, 0);
+    sketch.endShape();
+
+  }
+
   sketch.draw = () => {
-    sketch.drawLandscape();
+    sketch.drawQuadStrip();
+    // sketch.drawSingleQuad();
+    // sketch.drawLandscape();
   }
 };
 
