@@ -3,12 +3,7 @@ const ex010 = ( sketch ) => {
 
   let width = 480;
   let height = 200;
-  let rows = 2;
-  let cols = 2;
-  let cellWidth = width / cols;
-  let cellHeight = height / rows;
-  let grid;
-  let theta = 0.0;
+  let scl = 15; // cell size
   theta_z = 0.0;
 
   make2DArray = (cols, rows) => {
@@ -26,20 +21,24 @@ const ex010 = ( sketch ) => {
     let canvas = sketch.createCanvas(width, height, sketch.WEBGL);
     canvas.parent('perlin-terrain');
     sketch.background(sketch.background_color);
-    sketch.width = canvas.width;
-    sketch.height = canvas.height;
-    sketch.z = make2DArray(cols, rows); // z is what the source uses.
-    sketch.zoff = 0;
-    sketch.scl = 20; // cell size
 
-    // sketch.noLoop();
+    sketch.width = canvas.width;
+    sketch.cols = floor(canvas.width / scl);
+
+    sketch.height = canvas.height;
+    sketch.rows = floor(canvas.height / scl);
+
+    sketch.z = make2DArray(sketch.cols, sketch.rows); // z is what the source uses.
+
+    sketch.zoff = 0;
+    sketch.scl = scl;
   }
 
   sketch.calculate = () => {
     let xoff = 0;
-    for (let i = 0; i < cols; i++) {
+    for (let i = 0; i < sketch.cols; i++) {
       let yoff = 0;
-      for (let j = 0; j < rows; j++) {
+      for (let j = 0; j < sketch.rows; j++) {
         sketch.z[i][j] = map(noise(xoff, yoff,sketch.zoff), 0, 1, -120, 120);
         yoff += 0.1;
       }
@@ -74,30 +73,29 @@ const ex010 = ( sketch ) => {
     sketch.stroke(0, 100, 0);
     sketch.strokeWeight(1);
     sketch.fill(0, 170, 0, 100);
+
+    sketch.calculate();
+
     sketch.push();
 
-    // These now work.
     translate(0, 20, -200);
     sketch.rotateZ(theta_z);
-    // sketch.rotateY(PI/3);
     sketch.rotateX(PI/3);
 
-    let x_off = 0;
-    for (let x = 0; x < 25; x++) {
+    for (let x = 0; x < (sketch.cols - 1); x++) {
       let x_0 = (x * sketch.scl) - (sketch.width / 2);
       let x_1 = (x * sketch.scl) - (sketch.width / 2) + sketch.scl;
 
       sketch.beginShape(QUAD_STRIP);
 
-      let y_off = 0;
-      for (let y = 0; y < 15; y++) {
+      for (let y = 0; y < sketch.rows; y++) {
         let y_0 = (y * sketch.scl) - (sketch.height / 2);
 
-        sketch.vertex(x_0, y_0, x_off + y_off + random(-1, 1));
-        sketch.vertex(x_1, y_0, x_off + y_off + random(-1, 1));
-        y_off += 0.1;
+        // sketch.vertex(x_0, y_0, random(-1, 1));
+        // sketch.vertex(x_1, y_0, random(-1, 1));
+        sketch.vertex(x_0, y_0, sketch.z[x][y]);
+        sketch.vertex(x_1, y_0, sketch.z[x+1][y]);
       }
-      x_off += 0.1;
       sketch.endShape();
     }
 
