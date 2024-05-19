@@ -9,6 +9,7 @@ const ex010 = ( sketch ) => {
   let cellHeight = height / rows;
   let grid;
   let theta = 0.0;
+  theta_z = 0.0;
 
   make2DArray = (cols, rows) => {
     let arr = new Array(cols);
@@ -24,7 +25,6 @@ const ex010 = ( sketch ) => {
   sketch.setup = () => {
     let canvas = sketch.createCanvas(width, height, sketch.WEBGL);
     canvas.parent('perlin-terrain');
-    // sketch.pixelDensity(1);
     sketch.background(sketch.background_color);
     sketch.width = canvas.width;
     sketch.height = canvas.height;
@@ -74,21 +74,31 @@ const ex010 = ( sketch ) => {
     sketch.stroke(0, 100, 0);
     sketch.strokeWeight(1);
     sketch.fill(0, 170, 0, 100);
+    sketch.push();
 
-    for (let x = 0; x < 7; x++) {
+    // These now work.
+    sketch.rotateZ(theta_z);
+    sketch.rotateX(PI/3);
+
+    for (let x = 0; x < 8; x++) {
       let x_0 = x*sketch.scl;
       let x_1 = (x+1)*sketch.scl;
 
       sketch.beginShape(QUAD_STRIP);
 
-      for (let y = 0; y < 5; y++) {
+      for (let y = 0; y < 6; y++) {
         let y_0 = y*sketch.scl;
 
-        sketch.vertex(x_0, y_0, 0);
-        sketch.vertex(x_1, y_0, 0);  
+        sketch.vertex(x_0, y_0, random(-1, 1));
+        sketch.vertex(x_1, y_0, random(-1, 1));
       }
       sketch.endShape();
     }
+
+    sketch.pop();
+
+    // this works
+    theta_z += 0.0025;
   }
 
   sketch.draw = () => {
