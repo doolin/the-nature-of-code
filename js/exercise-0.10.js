@@ -4,16 +4,13 @@ const ex010 = ( sketch ) => {
   let width = 480;
   let height = 200;
   let scl = 15; // cell size
-  theta_z = 0.0;
+  let theta_z = 0.0;
 
   make2DArray = (cols, rows) => {
     let arr = new Array(cols);
-    console.log(cols);
-
     for (let i = 0; i < arr.length; i++) {
         arr[i] = new Array(rows);
     }
-    console.log(arr);
     return arr;
   }
 
@@ -44,7 +41,7 @@ const ex010 = ( sketch ) => {
       }
       xoff += 0.1;
     }
-    sketch.zoff+=0.01;
+    sketch.zoff += 0.01;
   }
 
   sketch.render = () => {
@@ -78,9 +75,9 @@ const ex010 = ( sketch ) => {
 
     sketch.push();
 
-    translate(0, 20, -200);
-    sketch.rotateZ(theta_z);
+    sketch.translate(0, 20, -200);
     sketch.rotateX(PI/3);
+    sketch.rotateZ(theta_z);
 
     for (let x = 0; x < (sketch.cols - 1); x++) {
       let x_0 = (x * sketch.scl) - (sketch.width / 2);
@@ -90,6 +87,10 @@ const ex010 = ( sketch ) => {
 
       for (let y = 0; y < sketch.rows; y++) {
         let y_0 = (y * sketch.scl) - (sketch.height / 2);
+
+        // let currentElevation = sketch.z[x][y];
+        // let currentShade = map(currentElevation, -120, 120, 0, 255);
+        // sketch.fill(currentShade, 125);
 
         // sketch.vertex(x_0, y_0, random(-1, 1));
         // sketch.vertex(x_1, y_0, random(-1, 1));
