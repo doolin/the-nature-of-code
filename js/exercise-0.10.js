@@ -30,7 +30,7 @@ const ex010 = ( sketch ) => {
     sketch.height = canvas.height;
     sketch.z = make2DArray(cols, rows); // z is what the source uses.
     sketch.zoff = 0;
-    sketch.scl = 10; // cell size
+    sketch.scl = 20; // cell size
 
     // sketch.noLoop();
   }
@@ -77,21 +77,27 @@ const ex010 = ( sketch ) => {
     sketch.push();
 
     // These now work.
+    translate(0, 20, -200);
     sketch.rotateZ(theta_z);
+    // sketch.rotateY(PI/3);
     sketch.rotateX(PI/3);
 
-    for (let x = 0; x < 8; x++) {
-      let x_0 = x*sketch.scl;
-      let x_1 = (x+1)*sketch.scl;
+    let x_off = 0;
+    for (let x = 0; x < 25; x++) {
+      let x_0 = (x * sketch.scl) - (sketch.width / 2);
+      let x_1 = (x * sketch.scl) - (sketch.width / 2) + sketch.scl;
 
       sketch.beginShape(QUAD_STRIP);
 
-      for (let y = 0; y < 6; y++) {
-        let y_0 = y*sketch.scl;
+      let y_off = 0;
+      for (let y = 0; y < 15; y++) {
+        let y_0 = (y * sketch.scl) - (sketch.height / 2);
 
-        sketch.vertex(x_0, y_0, random(-1, 1));
-        sketch.vertex(x_1, y_0, random(-1, 1));
+        sketch.vertex(x_0, y_0, x_off + y_off + random(-1, 1));
+        sketch.vertex(x_1, y_0, x_off + y_off + random(-1, 1));
+        y_off += 0.1;
       }
+      x_off += 0.1;
       sketch.endShape();
     }
 
