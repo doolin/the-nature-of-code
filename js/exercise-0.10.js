@@ -92,8 +92,6 @@ const ex010 = ( sketch ) => {
         // let currentShade = map(currentElevation, -120, 120, 0, 255);
         // sketch.fill(currentShade, 125);
 
-        // sketch.vertex(x_0, y_0, random(-1, 1));
-        // sketch.vertex(x_1, y_0, random(-1, 1));
         sketch.vertex(x_0, y_0, sketch.z[x][y]);
         sketch.vertex(x_1, y_0, sketch.z[x+1][y]);
       }
