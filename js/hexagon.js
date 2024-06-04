@@ -1,11 +1,11 @@
 const hexagon = (sketch) => {
   sketch.background_color = [245, 245, 220];
 
-  let width = 480;
-  let height = 200;
+  let width = 580;
+  let height = 580;
 
   sketch.setup = () => {
-    let canvas = sketch.createCanvas(width, height, sketch.WEBGL);
+    let canvas = sketch.createCanvas(width, height); // , sketch.WEBGL);
     canvas.parent('hexagons');
     sketch.background(sketch.background_color);
   }
