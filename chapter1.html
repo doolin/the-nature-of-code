@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nature of Code</title>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css">
+    <script src="./p5/p5.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/exercise-1.1.js"></script>
+</head>
+<body>
+  <h1>The Nature of Code</h1>
+
+  <p>
+    Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+    The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library
+    (<a href="https://p5js.org/reference/">reference documents for p5</a>). At the moment, all the HTML,
+    CSS, and JavaScript is hand-rolled. The page is deployed to S3 via the AWS command line tool invoked
+    from a Makefile, and served by CloudFront. S3 and CloudFront are configured with Terraform.
+  </p>
+
+  <h2>Chapter 1: Vectors</h2>
+
+  <p>
+    The second chapter <a href="https://natureofcode.com/vectors/">Vectors</a>
+  </p>
+
+  <h3 id="ex01"> Exercise 1.1: a random walker tending down and right, implemented with vectors</h3>
+
+  <p>
+    Steps for the random walk were biased towards the right at 26%, down at 26%,
+    up and left at 24% each. Just this slight bias results in a clear trend,
+  can be seen by letting the animation run for a few minutes.
+  </p>
+
+  <div class="canvas-container" id="random-walker"></div>
+
+  <p>
+    The step size is 1 pixel, and the walker is not confined to the region defined
+    by the canvas (cream colored panel above).
+  </p>
+
+
+  <hr />
+
+  <footer>
+    <p>
+      Have fun!.
+    </p>
+  </footer>
+  <div class="doolin">
+    <span class="shamrock">&#9752;</span> <a href="http://dool.in/" title="My routing page.">dool.in</a>
+  </div>
+</body>
+</html>
