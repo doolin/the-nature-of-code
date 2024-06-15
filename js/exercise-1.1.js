@@ -7,6 +7,8 @@
     let canvas = createCanvas(450, 240);
     canvas.parent('random-walker');
     background(245, 245, 220);
+    // frameRate(1);
+    midpoint = createVector(width / 2, height / 2);
     original = createVector(width / 2, height / 2);
     position = createVector(width / 2, height / 2);
     // angleMode(DEGREES)
@@ -19,19 +21,19 @@
   }
 
   class Walker {
-    constructor(position, original) {
+    constructor(position, original, midpoint) {
       this.o = original;
       this.p = position;
+      this.midpoint = midpoint;
     }
 
     show() {
       stroke([250, 0, 100]);
       point(this.o);
       stroke([0, 0, 150]);
-      point(this.p);
+      // point(this.p);
       // stroke([0, 200, 0]);
-      // point(p5.Vector.rotate(this.p, HALF_PI))
-
+      point(p5.Vector.rotate(this.o.sub(this.midpoint).add(this.midpoint), 0.3))
     }
 
     step() {
