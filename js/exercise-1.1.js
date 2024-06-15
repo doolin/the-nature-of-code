@@ -7,8 +7,10 @@
     let canvas = createCanvas(450, 240);
     canvas.parent('random-walker');
     background(245, 245, 220);
+    original = createVector(width / 2, height / 2);
     position = createVector(width / 2, height / 2);
-    walker = new Walker(position);
+    // angleMode(DEGREES)
+    walker = new Walker(position, original);
   }
 
   function draw() {
@@ -17,47 +19,49 @@
   }
 
   class Walker {
-    constructor(position) {
-      this.x = width / 2;
-      this.y = height / 2;
+    constructor(position, original) {
+      this.o = original;
       this.p = position;
     }
 
     show() {
-      stroke([150, 0, 0]);
-      point(this.x, this.y);
+      stroke([250, 0, 100]);
+      point(this.o);
       stroke([0, 0, 150]);
       point(this.p);
+      // stroke([0, 200, 0]);
+      // point(p5.Vector.rotate(this.p, HALF_PI))
+
     }
 
     step() {
       const choice = floor(random(100));
       if (choice >= 0 && choice < 26) {
-          this.x++;
+          this.o.x++;
           this.p.y++
       } else if (choice >= 26 && choice < 52) {
-          this.y++;
+          this.o.y++;
           this.p.x++;
       } else if (choice >= 52 && choice < 76) {
-          this.x--;
+          this.o.x--;
           this.p.y--;
       } else {
-          this.y--;
+          this.o.y--;
           this.p.x--;
       }
 
       // Wrap x around
-      if (this.x >= width) {
-        this.x = this.x % width;
-      } else if (this.x < 0) {
-        this.x = (this.x % width) + width;
+      if (this.o.x >= width) {
+        this.o.x = this.x % width;
+      } else if (this.o.x < 0) {
+        this.o.x = (this.o.x % width) + width;
       }
 
       // Wrap y around
-      if (this.y >= height) {
-        this.y = this.y % height;
-      } else if (this.y < 0) {
-        this.y = (this.y % height) + height;
+      if (this.o.y >= height) {
+        this.o.y = this.o.y % height;
+      } else if (this.o.y < 0) {
+        this.o.y = (this.o.y % height) + height;
       }
 
       // Wrap p.x around
