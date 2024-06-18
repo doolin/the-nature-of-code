@@ -8,11 +8,11 @@
     canvas.parent('random-walker');
     background(245, 245, 220);
     // frameRate(1);
-    midpoint = createVector(width / 2, height / 2);
-    original = createVector(width / 2, height / 2);
-    position = createVector(width / 2, height / 2);
+    let midpoint = createVector(width / 2, height / 2);
+    let original = createVector(width / 2, height / 2);
+    let position = createVector(width / 2, height / 2);
     // angleMode(DEGREES)
-    walker = new Walker(position, original);
+    walker = new Walker(position, original, midpoint);
   }
 
   function draw() {
@@ -32,7 +32,7 @@
       point(this.o);
       stroke([0, 0, 150]);
       point(this.p);
-      stroke([0, 200, 0]);
+      // stroke([0, 200, 0]);
       // point(p5.Vector.rotate(this.o.sub(this.midpoint).add(this.midpoint), 0.3))
     }
 
