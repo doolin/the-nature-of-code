@@ -17,6 +17,12 @@ const ex12 = ( sketch ) => {
     // [] << [previous, current)];
     sketch.current = sketch.createVector(width, height);
     sketch.previous = sketch.createVector(width, height);
+    sketch.walkers = new Array(
+      [sketch.createVector(width, height), sketch.createVector(width, height)],
+      [sketch.createVector(width, height), sketch.createVector(width, height)],
+      [sketch.createVector(width, height), sketch.createVector(width, height)]
+    )
+    
 
     sketch.prevX = sketch.x;
     sketch.prevY = sketch.y;
@@ -66,6 +72,32 @@ const ex12 = ( sketch ) => {
     sketch.stroke(0, 150, 0);
     sketch.line(sketch.prevX, sketch.prevY, sketch.x, sketch.y);
   }
+
+  sketch.walkerVector = (previous, current, color) => {
+    // Deleting these makes a cool radial pattern
+    previous.x = current.x;
+    previous.y = current.y;
+
+    let step = 10 * sketch.acceptreject();
+    current.x += random(-step, step);
+    current.y += random(-step, step);
+
+    // Wrap around logic for x and y coordinates
+    current.x = (current.x + sketch.width) % sketch.width;
+    current.y = (current.y + sketch.height) % sketch.height;
+
+    // Check for wrapping to draw line correctly
+    if (Math.abs(current.x - previous.x) > sketch.width / 2) {
+      previous.x = current.x; // Prevent drawing a line across the canvas
+    }
+    if (Math.abs(current.y - previous.y) > sketch.height / 2) {
+      previous.y = current.y; // Prevent drawing a line across the canvas
+    }
+
+    sketch.stroke(color);
+    sketch.line(previous.x, previous.y, current.x, current.y);
+  }
+
 
   sketch.blueWalker = () => {
     sketch.previous.x = sketch.current.x;
@@ -122,8 +154,9 @@ const ex12 = ( sketch ) => {
   sketch.draw = () => {
     // sketch.barGraph();
     sketch.walker();
-    sketch.blueWalker();
-    sketch.colorWalker([150, 0, 0]);
+    sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [200, 100, 150]);
+    // sketch.blueWalker();
+    // sketch.colorWalker([150, 0, 0]);
   }
   
   sketch.acceptreject = () => {
