@@ -46,30 +46,6 @@ const ex12 = ( sketch ) => {
     }
   }
 
-  sketch.walker = () => {
-    sketch.prevX = sketch.x;
-    sketch.prevY = sketch.y;
-
-    let step = 10 * sketch.acceptreject();
-    sketch.x += random(-step, step);
-    sketch.y += random(-step, step);
-
-    // Wrap around logic for x and y coordinates
-    sketch.x = (sketch.x + sketch.width) % sketch.width;
-    sketch.y = (sketch.y + sketch.height) % sketch.height;
-
-    // Check for wrapping to draw line correctly
-    if (Math.abs(sketch.x - sketch.prevX) > sketch.width / 2) {
-      sketch.prevX = sketch.x; // Prevent drawing a line across the canvas
-    }
-    if (Math.abs(sketch.y - sketch.prevY) > sketch.height / 2) {
-      sketch.prevY = sketch.y; // Prevent drawing a line across the canvas
-    }
-
-    sketch.stroke(0, 150, 0);
-    sketch.line(sketch.prevX, sketch.prevY, sketch.x, sketch.y);
-  }
-
   sketch.walkerVector = (previous, current, color) => {
     // Deleting these makes a cool radial pattern
     previous.x = current.x;
@@ -96,8 +72,9 @@ const ex12 = ( sketch ) => {
   }
 
   sketch.draw = () => {
-    sketch.walker();
     sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [200, 100, 150]);
+    sketch.walkerVector(sketch.walkers[1][0], sketch.walkers[1][1], [0, 0, 200]);
+    sketch.walkerVector(sketch.walkers[2][0], sketch.walkers[2][1], [0, 100, 0]);
   }
   
   sketch.acceptreject = () => {
