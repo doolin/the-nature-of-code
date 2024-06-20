@@ -12,9 +12,7 @@ const ex12 = ( sketch ) => {
     let height = canvas.height / 2;
     sketch.x = canvas.width / 2;
     sketch.y = canvas.height / 2;
-    // Create an array of vectors, size 1 to start:
-    // walkers = new Array(3)
-    // [] << [previous, current)];
+
     sketch.current = sketch.createVector(width, height);
     sketch.previous = sketch.createVector(width, height);
     sketch.walkers = new Array(
@@ -23,7 +21,6 @@ const ex12 = ( sketch ) => {
       [sketch.createVector(width, height), sketch.createVector(width, height)]
     )
     
-
     sketch.prevX = sketch.x;
     sketch.prevY = sketch.y;
 
@@ -98,65 +95,9 @@ const ex12 = ( sketch ) => {
     sketch.line(previous.x, previous.y, current.x, current.y);
   }
 
-
-  sketch.blueWalker = () => {
-    sketch.previous.x = sketch.current.x;
-    sketch.previous.y = sketch.current.y;
-    // sketch.previous = sketch.current;
-
-    let step = 10 * sketch.acceptreject();
-    sketch.current.x += random(-step, step);
-    sketch.current.y += random(-step, step);
-
-    // Wrap around logic for x and y coordinates
-    sketch.current.x = (sketch.current.x + sketch.width) % sketch.width;
-    sketch.current.y = (sketch.current.y + sketch.height) % sketch.height;
-
-    // Check for wrapping to draw line correctly
-    if (Math.abs(sketch.current.x - sketch.previous.x) > sketch.width / 2) {
-      sketch.previous.x = sketch.current.x; // Prevent drawing a line across the canvas
-    }
-    if (Math.abs(sketch.current.y - sketch.previous.y) > sketch.height / 2) {
-      sketch.previous.y = sketch.current.y; // Prevent drawing a line across the canvas
-    }
-
-    sketch.stroke(0, 0, 150);
-    // sketch.line(sketch.prevX, sketch.prevY, sketch.x, sketch.y);
-    sketch.line(sketch.previous.x, sketch.previous.y, sketch.current.x, sketch.current.y);
-  }
-
-  sketch.colorWalker = (color) => {
-    sketch.previous.x = sketch.current.x;
-    sketch.previous.y = sketch.current.y;
-    // sketch.previous = sketch.current;
-
-    let step = 10 * sketch.acceptreject();
-    sketch.current.x += random(-step, step);
-    sketch.current.y += random(-step, step);
-
-    // Wrap around logic for x and y coordinates
-    sketch.current.x = (sketch.current.x + sketch.width) % sketch.width;
-    sketch.current.y = (sketch.current.y + sketch.height) % sketch.height;
-
-    // Check for wrapping to draw line correctly
-    if (Math.abs(sketch.current.x - sketch.previous.x) > sketch.width / 2) {
-      sketch.previous.x = sketch.current.x; // Prevent drawing a line across the canvas
-    }
-    if (Math.abs(sketch.current.y - sketch.previous.y) > sketch.height / 2) {
-      sketch.previous.y = sketch.current.y; // Prevent drawing a line across the canvas
-    }
-
-    sketch.stroke(color);
-    // sketch.line(sketch.prevX, sketch.prevY, sketch.x, sketch.y);
-    sketch.line(sketch.previous.x, sketch.previous.y, sketch.current.x, sketch.current.y);
-  }
-
   sketch.draw = () => {
-    // sketch.barGraph();
     sketch.walker();
     sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [200, 100, 150]);
-    // sketch.blueWalker();
-    // sketch.colorWalker([150, 0, 0]);
   }
   
   sketch.acceptreject = () => {
