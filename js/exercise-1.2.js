@@ -1,8 +1,6 @@
 const ex12 = ( sketch ) => {
   
   sketch.background_color = [245, 245, 220];
-  let randomCounts = [];
-
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 200);
     canvas.parent('distribution-vectors');
@@ -10,42 +8,14 @@ const ex12 = ( sketch ) => {
     // TODO: rename to half_width and half_height
     let width = canvas.width / 2;
     let height = canvas.height / 2;
-    sketch.x = canvas.width / 2;
-    sketch.y = canvas.height / 2;
 
-    sketch.current = sketch.createVector(width, height);
-    sketch.previous = sketch.createVector(width, height);
     sketch.walkers = new Array(
       [sketch.createVector(width, height), sketch.createVector(width, height)],
       [sketch.createVector(width, height), sketch.createVector(width, height)],
       [sketch.createVector(width, height), sketch.createVector(width, height)]
     )
-    
-    sketch.prevX = sketch.x;
-    sketch.prevY = sketch.y;
-
-    for (let i = 0; i < 100; i++) {
-      randomCounts[i] = 0;
-    }
   }
   
-  sketch.barGraph = () => {
-    // Pick a random number and increase the count
-    let index = int(sketch.acceptreject() * randomCounts.length);
-    randomCounts[index]++;
-  
-    // Draw a rectangle to graph results
-    sketch.stroke(0, 100, 0);
-    sketch.strokeWeight(2);
-    sketch.fill(0, 127, 0);
-  
-    let w = sketch.width / randomCounts.length;
-  
-    for (let x = 0; x < randomCounts.length; x++) {
-      sketch.rect(x * w, sketch.height - randomCounts[x], w - 1, randomCounts[x]);
-    }
-  }
-
   sketch.walkerVector = (previous, current, color) => {
     // Deleting these makes a cool radial pattern
     previous.x = current.x;
