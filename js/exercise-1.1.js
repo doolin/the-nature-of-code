@@ -10,9 +10,10 @@
     // frameRate(1);
     let midpoint = createVector(width / 2, height / 2);
     let original = createVector(width / 2, height / 2);
-    let position = createVector(width / 2, height / 2);
+    // "position" is a reserved word in p5.js, so we use "_position" instead.
+    let _position = createVector(width / 2, height / 2);
     // angleMode(DEGREES)
-    walker = new Walker(position, original, midpoint);
+    walker = new Walker(_position, original, midpoint);
   }
 
   function draw() {
