@@ -4,7 +4,7 @@
 
   function setup() {
     // Create a vector here.
-    let canvas = createCanvas(450, 240);
+    let canvas = createCanvas(480, 240);
     canvas.parent('random-walker');
     background(245, 245, 220);
     // frameRate(1);
