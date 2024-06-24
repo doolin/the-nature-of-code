@@ -5,6 +5,9 @@ const splat = (sketch) => {
 
   let width = 480;
   let height = 200;
+  let splatX = width / 2; // Initial x-coordinate
+  let splatY = height / 2; // Initial y-coordinate
+
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(width, height); // , sketch.WEBGL);
@@ -41,9 +44,12 @@ const splat = (sketch) => {
     sketch.fill(0, 100, 0, opacity);
     // sketch.drawSplat(radius, radius);
     // sketch.translate(50, 50, 0);
-    x = width / 2; // random(width);
-    y = height / 2; // random(height);
-    sketch.translate(x, y);
+    // x = width / 2; // random(width);
+    // y = height / 2; // random(height);
+    // sketch.translate(x, y);
+
+    sketch.translate(splatX, splatY);
+
     sketch.drawSplat(radius, radius);
     opacity = (opacity - ostep + 255) % 255;
 
@@ -58,6 +64,13 @@ const splat = (sketch) => {
 
       sketch.fill(0);
       sketch.text(`x: ${sketch.mouseX.toFixed(0)}, y: ${sketch.mouseY.toFixed(0)}`, 10, 15);
+    }
+  }
+
+  sketch.mouseReleased = () => {
+    if (sketch.mouse_inside_canvas()) {
+      splatX = sketch.mouseX;
+      splatY = sketch.mouseY;
     }
   }
 }
