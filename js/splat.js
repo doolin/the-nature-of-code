@@ -26,6 +26,10 @@ const splat = (sketch) => {
     // sketch.circle(x_0, y_0, 20);
   }
 
+  sketch.mouse_inside_canvas = () => {
+    return sketch.mouseX >= 0 && sketch.mouseX <= sketch.width && sketch.mouseY >= 0 && sketch.mouseY <= sketch.height;
+  }
+
   sketch.draw = () => {
     let radius = 50
     sketch.frameRate(30);
@@ -42,6 +46,19 @@ const splat = (sketch) => {
     sketch.translate(x, y);
     sketch.drawSplat(radius, radius);
     opacity = (opacity + ostep) % 255;
+
+    if (sketch.mouse_inside_canvas()) {
+      // Clear a small area for the text
+      sketch.fill(sketch.background_color);
+      mx = - width / 2;
+      my = - height / 2;
+      sketch.noStroke();
+      sketch.translate(mx, my);
+      sketch.rect(0, 0, 90, 25);
+
+      sketch.fill(0);
+      sketch.text(`x: ${sketch.mouseX.toFixed(0)}, y: ${sketch.mouseY.toFixed(0)}`, 10, 15);
+    }
   }
 }
 
