@@ -1,6 +1,6 @@
 const splat = (sketch) => {
   sketch.background_color = [245, 245, 220];
-  let opacity = 0;
+  let opacity = 255;
   let ostep = 2;
 
   let width = 480;
@@ -45,7 +45,7 @@ const splat = (sketch) => {
     y = height / 2; // random(height);
     sketch.translate(x, y);
     sketch.drawSplat(radius, radius);
-    opacity = (opacity + ostep) % 255;
+    opacity = (opacity - ostep + 255) % 255;
 
     if (sketch.mouse_inside_canvas()) {
       // Clear a small area for the text
