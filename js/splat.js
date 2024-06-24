@@ -71,6 +71,7 @@ const splat = (sketch) => {
     if (sketch.mouse_inside_canvas()) {
       splatX = sketch.mouseX;
       splatY = sketch.mouseY;
+      opacity = 255;
     }
   }
 }
