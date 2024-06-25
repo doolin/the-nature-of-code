@@ -8,10 +8,6 @@ const hydrogen_ground = (sketch) => {
     sketch.fill(0, 102, 224, 20); // Blue color with transparency
   };
 
-  // 1s state.
-  // sketch.OneS = (r) => {
-  // };
-
   sketch.draw = () => {
     sketch.translate(sketch.width / 2, sketch.height / 2);
     let maxRadius = 200;
@@ -20,35 +16,16 @@ const hydrogen_ground = (sketch) => {
     for (let i = 0; i < numPoints; i++) {
       let r = sketch.randomExponential(1 / (maxRadius/2));
 
-      // 1s state
       let theta = sketch.random(sketch.TWO_PI);
       let phi = Math.acos(sketch.random(-1, 1));
       let x = r * Math.sin(phi) * Math.cos(theta);
       let y = r * Math.sin(phi) * Math.sin(theta);
       sketch.ellipse(x, y, 2, 2);
 
-      // 2p state
-      // let theta = Math.acos(sketch.random(-1, 1));
-      // let phi = sketch.random(sketch.TWO_PI);
-      // let x = r * Math.sin(theta) * Math.cos(phi);
-      // let y = r * Math.sin(theta) * Math.sin(phi);
-      // let z = r * Math.cos(theta);
-
-
-      // Calculate the probability density for the 2s state
       let probabilityDensity = Math.pow((2 - (r / maxRadius)), 2) * Math.exp(-r / (maxRadius / 2));
       if (sketch.random() < probabilityDensity) {
         sketch.ellipse(x, y, 2, 2);
       }
-
-      // 2p state
-      // let probabilityDensity = Math.pow(r, 2) * Math.exp(-r / (maxRadius / 2)) * Math.pow(Math.cos(theta), 2);
-
-      // // Use probability density to decide if we draw a point
-      // if (sketch.random() < probabilityDensity) {
-      //   sketch.ellipse(x, z, 2, 2);
-      // }
-
     }
   };
 
@@ -70,10 +47,6 @@ const hydrogen = (sketch) => {
     sketch.fill(0, 102, 224, 20); // Blue color with transparency
   };
 
-  // 1s state.
-  // sketch.OneS = (r) => {
-  // };
-
   sketch.draw = () => {
     sketch.translate(sketch.width / 2, sketch.height / 2);
     let maxRadius = 200;
@@ -82,26 +55,12 @@ const hydrogen = (sketch) => {
     for (let i = 0; i < numPoints; i++) {
       let r = sketch.randomExponential(1 / (maxRadius/2));
 
-      // 1s state
-      // let theta = sketch.random(sketch.TWO_PI);
-      // let phi = Math.acos(sketch.random(-1, 1));
-      // let x = r * Math.sin(phi) * Math.cos(theta);
-      // let y = r * Math.sin(phi) * Math.sin(theta);
-      // sketch.ellipse(x, y, 10, 10);
-
       // 2p state
       let theta = Math.acos(sketch.random(-1, 1));
       let phi = sketch.random(sketch.TWO_PI);
       let x = r * Math.sin(theta) * Math.cos(phi);
       let y = r * Math.sin(theta) * Math.sin(phi);
       let z = r * Math.cos(theta);
-
-
-      // Calculate the probability density for the 2s state
-      // let probabilityDensity = Math.pow((2 - (r / maxRadius)), 2) * Math.exp(-r / (maxRadius / 2));
-      // if (sketch.random() < probabilityDensity) {
-      //   sketch.ellipse(x, y, 2, 2);
-      // }
 
       // 2p state
       let probabilityDensity = Math.pow(r, 2) * Math.exp(-r / (maxRadius / 2)) * Math.pow(Math.cos(theta), 2);
