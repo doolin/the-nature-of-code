@@ -1,5 +1,4 @@
-const hydrogen = ( sketch ) => {
-
+const hydrogen = (sketch) => {
   sketch.setup = () => {
     let canvas = sketch.createCanvas(600, 600);
     canvas.parent('hydrogen');
@@ -15,14 +14,14 @@ const hydrogen = ( sketch ) => {
     let numPoints = 50000;
     
     for (let i = 0; i < numPoints; i++) {
-      let r = sketch.randomExponential(maxRadius);
-      let theta = sketch.random(TWO_PI);
+      let r = sketch.randomExponential(1 / maxRadius);
+      let theta = sketch.random(sketch.TWO_PI);
       let phi = Math.acos(sketch.random(-1, 1));
       
       let x = r * Math.sin(phi) * Math.cos(theta);
       let y = r * Math.sin(phi) * Math.sin(theta);
       
-      sketch.ellipse(x, y, 2, 2);
+      sketch.ellipse(x, y, 10, 10);
     }
   };
 
@@ -32,4 +31,4 @@ const hydrogen = ( sketch ) => {
   };
 }
 
-const orbitals = new p5(hydrogen);
+const orbitals = new p5(hydrogen, 'hydrogen');
