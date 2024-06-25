@@ -1,33 +1,33 @@
-// const ex13 = ( sketch ) => {
-//   sketch.background_color = [245, 245, 220];
+const ex13 = ( sketch ) => {
+  sketch.background_color = [245, 245, 220];
 
-//   sketch.setup = () => {
-//     let canvas = sketch.createCanvas(480, 200);
-//     canvas.parent('bouncer-1');
-//     sketch.background(sketch.background_color);
+  sketch.setup = () => {
+    let canvas = sketch.createCanvas(480, 200);
+    canvas.parent('bouncer-1');
+    sketch.background(sketch.background_color);
 
-//     sketch.position = createVector(100, 100);
-//     sketch.velocity = createVector(2.5, 2);
-//   }
+    sketch.position = createVector(100, 100);
+    sketch.velocity = createVector(2.5, 2);
+  }
   
-//   sketch.draw = () => {
-//     sketch.background(sketch.background_color);
-//     sketch.position.add(sketch.velocity);
+  sketch.draw = () => {
+    sketch.background(sketch.background_color);
+    sketch.position.add(sketch.velocity);
   
-//     if (sketch.position.x > sketch.width || sketch.position.x < 0) {
-//       sketch.velocity.x = sketch.velocity.x * -1;
-//     }
-//     if (sketch.position.y > sketch.height || sketch.position.y < 0) {
-//       sketch.velocity.y = sketch.velocity.y * -1;
-//     }
+    if (sketch.position.x > sketch.width || sketch.position.x < 0) {
+      sketch.velocity.x = sketch.velocity.x * -1;
+    }
+    if (sketch.position.y > sketch.height || sketch.position.y < 0) {
+      sketch.velocity.y = sketch.velocity.y * -1;
+    }
 
-//     sketch.stroke(0);  
-//     sketch.fill([0, 100, 0]);
-//     sketch.circle(sketch.position.x, sketch.position.y, 48);
-//   }
-// }
+    sketch.stroke(0);
+    sketch.fill([0, 100, 0]);
+    sketch.circle(sketch.position.x, sketch.position.y, 48);
+  }
+}
 
-// let bouncer1 = new p5(ex13);
+let bouncer1 = new p5(ex13);
 
 
 const sketch3DBox = (sketch) => {
@@ -37,7 +37,7 @@ const sketch3DBox = (sketch) => {
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 480, sketch.WEBGL);
-    canvas.parent('bouncer-1');
+    canvas.parent('bouncer-2');
 
     let size = 200;
     for (let i = -1; i <= 1; i += 2) {
@@ -60,9 +60,13 @@ const sketch3DBox = (sketch) => {
 
   function drawBox() {
     sketch.beginShape();
-    for (let i = 0; i < 4; i++) {
-      sketch.vertex(sketch.vertices[i].x, sketch.vertices[i].y, sketch.vertices[i].z);
-    }
+    // for (let i = 0; i < 4; i++) {
+    //   sketch.vertex(sketch.vertices[i].x, sketch.vertices[i].y, sketch.vertices[i].z);
+    // }
+    sketch.vertex(sketch.vertices[0].x, sketch.vertices[0].y, sketch.vertices[0].z);
+    sketch.vertex(sketch.vertices[1].x, sketch.vertices[1].y, sketch.vertices[1].z);
+    sketch.vertex(sketch.vertices[3].x, sketch.vertices[3].y, sketch.vertices[3].z);
+    sketch.vertex(sketch.vertices[2].x, sketch.vertices[2].y, sketch.vertices[2].z);
     sketch.endShape(sketch.CLOSE);
 
     sketch.beginShape();
