@@ -32,12 +32,16 @@ let bouncer1 = new p5(ex13);
 
 const sketch3DBox = (sketch) => {
   sketch.angle = 0;
-  sketch.background_color = [200, 200, 200];
+  sketch.background_color = [245, 245, 220];
   sketch.vertices = [];
 
   sketch.setup = () => {
-    let canvas = sketch.createCanvas(480, 480, sketch.WEBGL);
+    let canvas = sketch.createCanvas(480, 200, sketch.WEBGL);
     canvas.parent('bouncer-2');
+
+    sketch.position = createVector(100, 100, 100);
+    sketch.velocity = createVector(2.5, 2, 1.5);
+
 
     let size = 200;
     for (let i = -1; i <= 1; i += 2) {
@@ -51,14 +55,43 @@ const sketch3DBox = (sketch) => {
 
   sketch.draw = () => {
     sketch.background(sketch.background_color);
-    sketch.rotateX(sketch.angle);
-    sketch.rotateY(sketch.angle);
-    sketch.rotateZ(sketch.angle * 0.7);
-    drawBox();
+    sketch.orbitControl();
+
+    sketch.noFill();
+
+    let boxWidth = 100;
+    sketch.box(200);
+
+    sketch.position.add(sketch.velocity);
+
+    bbx = boxWidth / 2;
+    if (sketch.position.x > boxWidth || sketch.position.x < -boxWidth) {
+      sketch.velocity.x = sketch.velocity.x * -1;
+    }
+    if (sketch.position.y > boxWidth || sketch.position.y < -boxWidth) {
+      sketch.velocity.y = sketch.velocity.y * -1;
+    }
+
+    if (sketch.position.z > boxWidth || sketch.position.z < -boxWidth) {
+      sketch.velocity.z = sketch.velocity.z * -1;
+    }
+
+    sketch.stroke(0);
+    sketch.fill([0, 100, 0]);
+    sketch.circle(sketch.position.x, sketch.position.y, 48);
+    // TODO: wrap sphere handling in push and pop to control
+    // translation independently of the box.
+    sketch.sphere(20);
+
+    // sketch.rotateX(sketch.angle);
+    // sketch.rotateY(sketch.angle);
+    // sketch.rotateZ(sketch.angle * 0.7);
+    // drawBox();
     // sketch.angle += 0.01;
   };
 
   function drawBox() {
+    // left side
     sketch.beginShape();
     // for (let i = 0; i < 4; i++) {
     //   sketch.vertex(sketch.vertices[i].x, sketch.vertices[i].y, sketch.vertices[i].z);
