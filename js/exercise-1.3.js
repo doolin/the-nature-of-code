@@ -34,13 +34,13 @@ const sketch3DBox = (sketch) => {
   sketch.angle = 0;
   sketch.background_color = [245, 245, 220];
   sketch.vertices = [];
-  let radius = 48;
+  let radius = 36;
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 300, sketch.WEBGL);
     canvas.parent('bouncer-2');
 
-    sketch.position = createVector(100, 100, 100);
+    sketch.position = createVector(50, 50, 50);
     sketch.velocity = createVector(2.5, 2, 1.5);
 
 
@@ -65,15 +65,15 @@ const sketch3DBox = (sketch) => {
 
     sketch.position.add(sketch.velocity);
 
-    let bbx = boxWidth - radius;
-    if (sketch.position.x > boxWidth || sketch.position.x < -boxWidth) {
+    let bbx = boxWidth - (radius/2);
+    if (sketch.position.x > bbx || sketch.position.x < -bbx) {
       sketch.velocity.x = sketch.velocity.x * -1;
     }
-    if (sketch.position.y > boxWidth || sketch.position.y < -boxWidth) {
+    if (sketch.position.y > bbx || sketch.position.y < -bbx) {
       sketch.velocity.y = sketch.velocity.y * -1;
     }
 
-    if (sketch.position.z > boxWidth || sketch.position.z < -boxWidth) {
+    if (sketch.position.z > bbx || sketch.position.z < -bbx) {
       sketch.velocity.z = sketch.velocity.z * -1;
     }
 
