@@ -40,18 +40,19 @@ const sketch3DBox = (sketch) => {
     let canvas = sketch.createCanvas(480, 300, sketch.WEBGL);
     canvas.parent('bouncer-2');
 
-    sketch.position = createVector(50, 50, 50);
-    sketch.velocity = createVector(2.5, 2, 1.5);
+    sketch.frameRate(15);
 
+    sketch.position = sketch.createVector(50, 50, 50);
+    sketch.velocity = sketch.createVector(2.5, 2, 1.5);
 
-    let size = 200;
-    for (let i = -1; i <= 1; i += 2) {
-      for (let j = -1; j <= 1; j += 2) {
-        for (let k = -1; k <= 1; k += 2) {
-          sketch.vertices.push(sketch.createVector(i * size / 2, j * size / 2, k * size / 2));
-        }
-      }
-    }
+    // let size = 200;
+    // for (let i = -1; i <= 1; i += 2) {
+    //   for (let j = -1; j <= 1; j += 2) {
+    //     for (let k = -1; k <= 1; k += 2) {
+    //       sketch.vertices.push(sketch.createVector(i * size / 2, j * size / 2, k * size / 2));
+    //     }
+    //   }
+    // }
   };
 
   sketch.draw = () => {
@@ -62,10 +63,35 @@ const sketch3DBox = (sketch) => {
 
     let boxWidth = 100;
     sketch.box(200);
+    let bbx = boxWidth - (radius/2);
+
+    // sketch.push();
+    // sketch.position.add(sketch.velocity);
+
+    // if (sketch.position.x > bbx || sketch.position.x < -bbx) {
+    //   sketch.velocity.x = sketch.velocity.x * -1;
+    // }
+    // if (sketch.position.y > bbx || sketch.position.y < -bbx) {
+    //   sketch.velocity.y = sketch.velocity.y * -1;
+    // }
+
+    // if (sketch.position.z > bbx || sketch.position.z < -bbx) {
+    //   sketch.velocity.z = sketch.velocity.z * -1;
+    // }
+
+    // sketch.stroke(0);
+    // sketch.fill([0, 100, 0]);
+    // sketch.circle(sketch.position.x, sketch.position.y, radius);
+    // sketch.pop();
+
+    // TODO: wrap sphere handling in push and pop to control
+    // translation independently of the box.
+    sketch.push()
+    sketch.translate(sketch.position.x, sketch.position.y, sketch.position.z);
+    sketch.sphere(20);
+    sketch.pop();
 
     sketch.position.add(sketch.velocity);
-
-    let bbx = boxWidth - (radius/2);
     if (sketch.position.x > bbx || sketch.position.x < -bbx) {
       sketch.velocity.x = sketch.velocity.x * -1;
     }
@@ -76,14 +102,7 @@ const sketch3DBox = (sketch) => {
     if (sketch.position.z > bbx || sketch.position.z < -bbx) {
       sketch.velocity.z = sketch.velocity.z * -1;
     }
-
-    sketch.stroke(0);
-    sketch.fill([0, 100, 0]);
-    sketch.circle(sketch.position.x, sketch.position.y, radius);
-    // TODO: wrap sphere handling in push and pop to control
-    // translation independently of the box.
-    sketch.sphere(20);
-
+    
     // sketch.rotateX(sketch.angle);
     // sketch.rotateY(sketch.angle);
     // sketch.rotateZ(sketch.angle * 0.7);
