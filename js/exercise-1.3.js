@@ -34,9 +34,10 @@ const sketch3DBox = (sketch) => {
   sketch.angle = 0;
   sketch.background_color = [245, 245, 220];
   sketch.vertices = [];
+  let radius = 48;
 
   sketch.setup = () => {
-    let canvas = sketch.createCanvas(480, 200, sketch.WEBGL);
+    let canvas = sketch.createCanvas(480, 300, sketch.WEBGL);
     canvas.parent('bouncer-2');
 
     sketch.position = createVector(100, 100, 100);
@@ -64,7 +65,7 @@ const sketch3DBox = (sketch) => {
 
     sketch.position.add(sketch.velocity);
 
-    bbx = boxWidth / 2;
+    let bbx = boxWidth - radius;
     if (sketch.position.x > boxWidth || sketch.position.x < -boxWidth) {
       sketch.velocity.x = sketch.velocity.x * -1;
     }
@@ -78,7 +79,7 @@ const sketch3DBox = (sketch) => {
 
     sketch.stroke(0);
     sketch.fill([0, 100, 0]);
-    sketch.circle(sketch.position.x, sketch.position.y, 48);
+    sketch.circle(sketch.position.x, sketch.position.y, radius);
     // TODO: wrap sphere handling in push and pop to control
     // translation independently of the box.
     sketch.sphere(20);
