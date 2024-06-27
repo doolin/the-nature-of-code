@@ -1,6 +1,7 @@
 const ex13 = ( sketch ) => {
   sketch.background_color = [245, 245, 220];
   let diamteer = 36;
+  let radius = diamteer / 2;
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 200);
@@ -17,10 +18,13 @@ const ex13 = ( sketch ) => {
     sketch.position.add(sketch.velocity);
   
     // bounding box
-    if (sketch.position.x > sketch.width || sketch.position.x < 0) {
+    let bbx = sketch.width - radius;
+    if (sketch.position.x > bbx || sketch.position.x < radius) {
       sketch.velocity.x = sketch.velocity.x * -1;
     }
-    if (sketch.position.y > sketch.height || sketch.position.y < 0) {
+
+    let bby = sketch.height - radius;
+    if (sketch.position.y > bby || sketch.position.y < radius) {
       sketch.velocity.y = sketch.velocity.y * -1;
     }
 
