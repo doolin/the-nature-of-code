@@ -8,6 +8,18 @@ const car = (sketch) => {
     sketch.frameRate(30);
     sketch.position = sketch.createVector(0, -20, 0);
     sketch.velocity = sketch.createVector(1, 0, 0);
+    sketch.acceleration = sketch.createVector(0, 0, 0);
+
+    canvas.elt.tabIndex = 0; // Make the canvas focusable
+    canvas.elt.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        sketch.acceleration.x += 0.01;
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        sketch.acceleration.x -= 0.01;
+      }
+    });
   };
 
   // Two boxes, one solid which is ground, one clear and
@@ -19,26 +31,32 @@ const car = (sketch) => {
     sketch.background(sketch.background_color);
     sketch.orbitControl();
 
+    // The slab.
     sketch.fill([0, 100, 0]);
     sketch.stroke('#fff');
     sketch.box(300, 10, 300);
-    // Now translate up (y) 10 and draw another box.
-    // sketch.translate(0, -20, 0);
-    // sketch.translate(sketch.position.x, sketch.position.y, sketch.position.z);
+
+    // Now translate "up" and position for the small box.
     sketch.translate(sketch.position);
     sketch.fill([100, 0, 0]);
     sketch.box(10, 10, 10);
-    // sketch.translate(sketch.position.x, sketch.position.y, sketch.position.z);
-    // sketch.rotateX(sketch.angle);
-    // sketch.rotateY(sketch.angle);
-    // sketch.rotateZ(sketch.angle);
-    // sketch.box(90);
-    // sketch.angle += 0.1;
+
     sketch.position.add(sketch.velocity);
+    sketch.velocity.add(sketch.acceleration);
 
     // Wrap the position around the box.
     if (sketch.position.x > 150) {
       sketch.position.x = -150;
+    } else if (sketch.position.x < -150) {
+      sketch.position.x = 150;
+    }
+  };
+
+  sketch.keyPressed = () => {
+    if (sketch.keyCode === UP_ARROW) {
+      sketch.acceleration.x += 0.01;
+    } else if (sketch.keyCode === DOWN_ARROW) {
+      sketch.acceleration.x -= 0.01;
     }
   };
 }
