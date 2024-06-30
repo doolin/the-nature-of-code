@@ -42,9 +42,16 @@ const ex12 = ( sketch ) => {
   }
 
   sketch.draw = () => {
-    sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [200, 100, 150]);
-    sketch.walkerVector(sketch.walkers[1][0], sketch.walkers[1][1], [0, 0, 200]);
-    sketch.walkerVector(sketch.walkers[2][0], sketch.walkers[2][1], [0, 100, 0]);
+    let value = 150
+    // sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [200, 100, 150]);
+    // sketch.walkerVector(sketch.walkers[1][0], sketch.walkers[1][1], [0, 0, 200]);
+    // sketch.walkerVector(sketch.walkers[2][0], sketch.walkers[2][1], [0, 100, 0]);
+    // sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [50, 0, 0]);
+    // sketch.walkerVector(sketch.walkers[1][0], sketch.walkers[1][1], [0, 50, 0]);
+    // sketch.walkerVector(sketch.walkers[2][0], sketch.walkers[2][1], [0, 0, 50]);
+    sketch.walkerVector(sketch.walkers[0][0], sketch.walkers[0][1], [value, 0, 0]);
+    sketch.walkerVector(sketch.walkers[1][0], sketch.walkers[1][1], [0, value, 0]);
+    sketch.walkerVector(sketch.walkers[2][0], sketch.walkers[2][1], [0, 0, value]);
   }
   
   sketch.acceptreject = () => {
