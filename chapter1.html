@@ -38,7 +38,7 @@
   <h3 id="ex11"> Exercise 1.1: Vectorize existing code</h3>
 
   <blockquote>
-    `Take one of the walker examples from Chapter 0 and convert it to use vectors.
+    Take one of the walker examples from Chapter 0 and convert it to use vectors.
   </blockquote>
 
   <p>
@@ -81,11 +81,39 @@
     Extend Example 1.2 into 3D. Can you get a sphere to bounce around a box?
   </blockquote>
 
+  <p>
+    First let's figure it out in 2D. The following show a ball bouncing around
+    in a rectangular box. Straightforward.
+  </p>
   <div class="canvas-container" id="bouncer-1"></div>
 
+  <p>
+    Doing this in 3D is a little more involved as it was done in WebGL to
+    leverage browser rendering capabilities. WebGL provides primitive
+    shapes such as box and sphere which would otherwise have to be created
+    by coordinates.
+  </p>
   <div class="canvas-container" id="bouncer-2"></div>
 
+  <p>
+    This was all relatively straitforward.
+  </p>
+
   <h3 id="ex14"> Exercise 1.4: Write the limit() function for the p5.Vector class</h3>
+
+  <blockquote>
+    Write the limit() function for the p5.Vector class:
+    <pre>
+      limit(max) {
+        if (this.mag() > max) {
+          this.normalize();
+          this.mult(max);
+        }
+      }
+    </pre>
+  </blockquote>
+
+
 
   <div class="canvas-container" id="limit-demo"></div>
 
@@ -124,6 +152,11 @@
   </blockquote>
 
   <div class="canvas-container" id="gravity"></div>
+
+  <p>
+    And that is a wrap for Chapter 1 of Nature of Code. You may also be
+    interested in <a href="/index.html">Chapter 0: Randomness</a>
+  </p>
 
   <hr />
 

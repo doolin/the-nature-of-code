@@ -5,8 +5,11 @@
 // location, given the pointer is in the canvas.
 // We want to use the p5.js Vector capabilities for
 // position and valocity.
-const gravity = (sketch) => {
 
+// TODO:
+//   - Have the default behavior match the 2D bouncer when
+//   the pointer is not in the canvas.
+const gravity = (sketch) => {
   let canvasWidth = 480;
   let canvasHeight = 200;
   let background_color = [245, 245, 220];

@@ -1,3 +1,6 @@
+// TODO:
+//   - Add a limit to the velocity.
+//   - Add velocity and acceleration text values to the canvas
 const car = (sketch) => {
   sketch.angle = 0;
   sketch.background_color = [245, 245, 220];
