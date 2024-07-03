@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Nature of Code: Vectors</title>
     <link rel="stylesheet" type="text/css" href="styles/basic.css">
+    <link rel="stylesheet" type="text/css" href="styles/prism.css">
     <script src="./p5/p5.js"></script>
+    <script src="./js/prism.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="./js/exercise-1.1.js"></script>
     <script src="./js/exercise-1.2.js"></script>
@@ -103,17 +105,17 @@
 
   <blockquote>
     Write the limit() function for the p5.Vector class:
-    <pre>
+  </blockquote>
+  <pre>
+    <code class="language-javascript">
       limit(max) {
         if (this.mag() > max) {
           this.normalize();
           this.mult(max);
         }
       }
-    </pre>
-  </blockquote>
-
-
+    </code>
+  </pre>
 
   <div class="canvas-container" id="limit-demo"></div>
 
