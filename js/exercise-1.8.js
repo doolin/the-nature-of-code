@@ -7,7 +7,7 @@
 // position and valocity.
 
 // TODO:
-//   - Have the default behavior match the 2D bouncer when
+// - Have the default behavior match the 2D bouncer when
 //   the pointer is not in the canvas.
 const gravity = (sketch) => {
   let canvasWidth = 480;
@@ -21,7 +21,7 @@ const gravity = (sketch) => {
     canvas.parent('gravity');
     sketch.background_color = background_color;
     sketch.position = sketch.createVector(canvas.width / 2, canvas.height / 2);
-    sketch.velocity = sketch.createVector(random(-1, 1), random(-1, 1));
+    sketch.velocity = sketch.createVector(random(-3, 3), random(-3, 3));
   };
 
   sketch.draw = () => {
@@ -32,17 +32,24 @@ const gravity = (sketch) => {
     // Determine the vector towards the pointer
     let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
     direction = p5.Vector.sub(mouse, sketch.position);
-    // Normalize the vector to a unit vector
     direction.normalize();
 
     // Check if the pointer is in the canvas
     if (sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height) {
-      sketch.velocity = direction; // add(direction);
-      sketch.position.add(sketch.velocity);
+      speed = sketch.velocity.mag();
+      sketch.velocity = direction.mult(speed);
     }
-    
-    // set the velocity vector to point towards the mouse
-    // and update the position vector accordingly.
+    sketch.position.add(sketch.velocity);
+
+    let bbx = sketch.width - radius / 2;
+    if (sketch.position.x > bbx || sketch.position.x < radius / 2) {
+      sketch.velocity.x = sketch.velocity.x * -1;
+    }
+
+    let bby = sketch.height - radius / 2;
+    if (sketch.position.y > bby || sketch.position.y < radius / 2) {
+      sketch.velocity.y = sketch.velocity.y * -1;
+    }
 
     sketch.fill([0, 100, 0]);
     sketch.ellipse(sketch.position.x, sketch.position.y, radius, radius);
