@@ -149,7 +149,15 @@
 
   <h3 id="ex17"> Exercise 1.7: Static functions</h3>
 
-  <p>Rewrite example code to use static functions</p>
+  <blockquote>
+    Translate the following pseudocode to code, using static or nonstatic functions where appropriate:
+    <ul>
+      <li>Vector v = new Vector(1, 5);</li>
+      <li>Vector u = v.mult(2);</li>
+      <li>Vector w = v.sub(u);</li>
+      <li>w.div(3);</li>
+    </ul>
+  </blockquote>
 
   <h3 id="ex18"> Exercise 1.8: Gravitational attraction</h3>
 
@@ -165,6 +173,23 @@
   </blockquote>
 
   <div class="canvas-container" id="gravity"></div>
+
+  <p>
+    Mathematically, this is expressed as:
+  </p>
+  <p>
+    \( F = G \frac{m_1 m_2}{r^2} \)
+  </p>
+  <p>
+    where:
+  </p>
+  <ul>
+    <li>\( F \) is the magnitude of the gravitational force between the two masses,</li>
+    <li>\( G \) is the gravitational constant (\( 6.67430 \times 10^{-11} \,
+      \text{m}^3 \, \text{kg}^{-1} \, \text{s}^{-2} \)),</li>
+    <li>\( m_1 \) and \( m_2 \) are the masses of the two objects,</li>
+    <li>\( r \) is the distance between the centers of the two masses.</li>
+  </ul>
 
   <p>
     And that is a wrap for Chapter 1 of Nature of Code. You may also be

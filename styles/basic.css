@@ -10,7 +10,7 @@ blockquote {
 color: #909090; /* Dark grey color */
 font-style: italic; /* Optional: to differentiate blockquote from other text */
 }
-p {
+p, li {
   color: #707070; /* Dark grey color */
 }
 .text-content {
