@@ -40,6 +40,18 @@ const gravity = (sketch) => {
     return sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height;
   }
 
+  sketch.checkEdges = () => {
+    let bbx = sketch.width - radius / 2;
+    if (sketch.position.x > bbx || sketch.position.x < radius / 2) {
+      sketch.velocity.x = sketch.velocity.x * -1;
+    }
+
+    let bby = sketch.height - radius / 2;
+    if (sketch.position.y > bby || sketch.position.y < radius / 2) {
+      sketch.velocity.y = sketch.velocity.y * -1;
+    }
+  }
+
   sketch.draw = () => {
     let direction;
 
@@ -56,15 +68,7 @@ const gravity = (sketch) => {
     }
     sketch.position.add(sketch.velocity);
 
-    let bbx = sketch.width - radius / 2;
-    if (sketch.position.x > bbx || sketch.position.x < radius / 2) {
-      sketch.velocity.x = sketch.velocity.x * -1;
-    }
-
-    let bby = sketch.height - radius / 2;
-    if (sketch.position.y > bby || sketch.position.y < radius / 2) {
-      sketch.velocity.y = sketch.velocity.y * -1;
-    }
+    sketch.checkEdges();
 
     sketch.fill([0, 100, 0]);
     sketch.ellipse(sketch.position.x, sketch.position.y, radius, radius);
