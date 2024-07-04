@@ -14,6 +14,10 @@ const gravity = (sketch) => {
   let canvasHeight = 200;
   let background_color = [245, 245, 220];
   let radius = 20;
+  let G = 6.67430e-11;
+  let ballMass = 1;
+  let pointerMass = 1;
+  let time_delta = 1;
 
 
   sketch.setup = () => {
@@ -23,6 +27,18 @@ const gravity = (sketch) => {
     sketch.position = sketch.createVector(canvas.width / 2, canvas.height / 2);
     sketch.velocity = sketch.createVector(random(-3, 3), random(-3, 3));
   };
+
+  sketch.acceleration = () => {
+    let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
+    let direction = p5.Vector.sub(mouse, sketch.position);
+    direction.normalize();
+    acceleration = G * pointerMass / pow(direction.mag(), 2);
+    return direction.mult(acceleration)
+  }
+
+  sketch.pointerInCanvas = () => {
+    return sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height;
+  }
 
   sketch.draw = () => {
     let direction;
@@ -34,8 +50,7 @@ const gravity = (sketch) => {
     direction = p5.Vector.sub(mouse, sketch.position);
     direction.normalize();
 
-    // Check if the pointer is in the canvas
-    if (sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height) {
+    if (sketch.pointerInCanvas()) {
       speed = sketch.velocity.mag();
       sketch.velocity = direction.mult(speed);
     }
