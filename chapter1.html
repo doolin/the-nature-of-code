@@ -172,10 +172,9 @@
     magnitude of acceleration, stronger when it's either closer or farther away.
   </blockquote>
 
-  <div class="canvas-container" id="gravity"></div>
 
   <p>
-    Mathematically, this is expressed as:
+    Why not just use gravity> Mathematically, gravity is expressed as:
   </p>
   <p>
     \( F = G \frac{m_1 m_2}{r^2} \)
@@ -190,6 +189,21 @@
     <li>\( m_1 \) and \( m_2 \) are the masses of the two objects,</li>
     <li>\( r \) is the distance between the centers of the two masses.</li>
   </ul>
+
+  <p>
+    Here is an implementation which uses the formula, but with non-physical values
+    (for demonstration purposes only).
+  </p>
+
+  <div class="canvas-container" id="gravity"></div>
+
+  <p>
+    The disk starts at rest and will move by gravitsional attraction
+    towards the position of the pointer. See if you can capture the
+    disk into a stable orbit around the pointer.
+  </p>
+
+  <hr />
 
   <p>
     And that is a wrap for Chapter 1 of Nature of Code. You may also be

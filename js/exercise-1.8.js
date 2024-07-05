@@ -1,3 +1,4 @@
+// Iinitial GPT-4o prompt:
 // This script will use p5.js to create a canvas with
 // a filled circle which is initially traveling in a 
 // random direction at a constant velocity. The circle
@@ -7,17 +8,20 @@
 // position and valocity.
 
 // TODO:
-// - Have the default behavior match the 2D bouncer when
-//   the pointer is not in the canvas.
+// - Add a text box showing the x, y position of the disk
+// - Add trails tp show the path of the disk
+// - Use actual physical values for say earth/moon
+// - Add controls for changing parameters
 const gravity = (sketch) => {
   let canvasWidth = 480;
   let canvasHeight = 200;
   let background_color = [245, 245, 220];
   let radius = 20;
-  let G = 6.67430e-11;
+  let G = 0.5; //6.67430e-11;
   let ballMass = 1;
-  let pointerMass = 1;
+  let pointerMass = 300;
   let time_delta = 1;
+  let direction;
 
 
   sketch.setup = () => {
@@ -25,16 +29,9 @@ const gravity = (sketch) => {
     canvas.parent('gravity');
     sketch.background_color = background_color;
     sketch.position = sketch.createVector(canvas.width / 2, canvas.height / 2);
-    sketch.velocity = sketch.createVector(random(-3, 3), random(-3, 3));
+    // sketch.velocity = sketch.createVector(random(-3, 3), random(-3, 3));
+    sketch.velocity = sketch.createVector(0, 0);
   };
-
-  sketch.acceleration = () => {
-    let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
-    let direction = p5.Vector.sub(mouse, sketch.position);
-    direction.normalize();
-    acceleration = G * pointerMass / pow(direction.mag(), 2);
-    return direction.mult(acceleration)
-  }
 
   sketch.pointerInCanvas = () => {
     return sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height;
@@ -52,6 +49,24 @@ const gravity = (sketch) => {
     }
   }
 
+  sketch.getR = () => {
+    let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
+    let R = p5.Vector.sub(mouse, sketch.position).mag();
+    if (R < 20) {
+      R = 20;
+    }
+    return R;
+  }
+
+  sketch.acceleration = () => {
+    let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
+    let direction = p5.Vector.sub(mouse, sketch.position);
+    direction.normalize();
+    let R = sketch.getR();
+    acceleration = G * pointerMass / pow(R, 2);
+    return direction.mult(acceleration * time_delta);
+  }
+
   sketch.draw = () => {
     let direction;
 
@@ -63,8 +78,8 @@ const gravity = (sketch) => {
     direction.normalize();
 
     if (sketch.pointerInCanvas()) {
-      speed = sketch.velocity.mag();
-      sketch.velocity = direction.mult(speed);
+      // speed = sketch.velocity.mag();
+      sketch.velocity.add(sketch.acceleration());
     }
     sketch.position.add(sketch.velocity);
 
