@@ -21,8 +21,6 @@ const gravity = (sketch) => {
   let ballMass = 1;
   let pointerMass = 300;
   let time_delta = 1;
-  let direction;
-
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(canvasWidth, canvasHeight);
@@ -67,28 +65,29 @@ const gravity = (sketch) => {
     return direction.mult(acceleration * time_delta);
   }
 
-  sketch.draw = () => {
-    let direction;
+  sketch.displayMotionValues = () => {
+    // Clear a small area for the text
+    sketch.fill(sketch.background_color);
+    sketch.noStroke();
+    sketch.rect(0, 0, 90, 25);
 
+    sketch.fill(0);
+    sketch.text(`speed: ${sketch.velocity.mag().toFixed(2)}`, 10, 15);
+  }
+
+  sketch.draw = () => {
     sketch.background(sketch.background_color);
 
-    // Determine the vector towards the pointer
-    let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
-    direction = p5.Vector.sub(mouse, sketch.position);
-    direction.normalize();
-
     if (sketch.pointerInCanvas()) {
-      // speed = sketch.velocity.mag();
       sketch.velocity.add(sketch.acceleration());
     }
     sketch.position.add(sketch.velocity);
-
     sketch.checkEdges();
 
     sketch.fill([0, 100, 0]);
     sketch.ellipse(sketch.position.x, sketch.position.y, radius, radius);
+    sketch.displayMotionValues();
   };
-
 }
 
 const gravity_p5 = new p5(gravity);

@@ -13,26 +13,10 @@ const ex06 = ( sketch ) => {
     sketch.ty = 10000;
   }
 
-  sketch.timeSeries = () => {
-    sketch.background(sketch.background_color);
-    let xoff = t;
-    sketch.noFill();
-    sketch.stroke(0, 100, 0);
-    sketch.strokeWeight(2);
-    sketch.beginShape();
-    for (let i = 0; i < sketch.width; i++) {
-      let y = sketch.noise(xoff) * sketch.height;
-      xoff += 0.01;
-      sketch.vertex(i, y);
-    }
-    sketch.endShape();
-    t += 0.01;
-  }
-
   sketch.perlinWalker = () => {
     sketch.stroke(0, 100, 0);
-    sketch.strokeWeight(0.5);
-    sketch.fill(0, 80, 0, 20);
+    sketch.strokeWeight(0.25);
+    sketch.fill(0, 80, 0, 10);
 
     sketch.x = map(noise(sketch.tx), 0, 1, 0, sketch.width);
     sketch.y = map(noise(sketch.ty), 0, 1, 0, sketch.height);
@@ -43,7 +27,6 @@ const ex06 = ( sketch ) => {
   }
 
   sketch.draw = () => {
-    // sketch.timeSeries();
     sketch.perlinWalker();
   }
 };
