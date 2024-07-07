@@ -31,12 +31,18 @@
 
   <h2>Chapter 0 - Randomness</h2>
 
+
   <p>
     The first chapter <a href="https://natureofcode.com/random/">Randomness</a>
     introduces the concept of random numbers with simple examples such as random walks.
   </p>
 
   <h3 id="ex01"> Exercise 0.1: a random walker tending down and right</h3>
+
+  <blockquote>
+    Create a random walker that has a greater tendency to move down and to the right.
+    (The solution follows in the next section.)
+  </blockquote>
 
   <p>
     Steps for the random walk were biased towards the right at 26%, down at 26%,
@@ -47,7 +53,7 @@
   <div class="canvas-container" id="random-walker"></div>
 
   <p>
-    The step size is 1 pixel, and the walker is not confined to the region defined
+    The step size is 1 pixel, and the walker wraps around the region defined
     by the canvas (cream colored panel above).
   </p>
 
@@ -115,8 +121,8 @@
     <div class="canvas-container" id="canvas1"></div>
 
     <p>
-      More can be done: 1. confine the cursor to the canvas; 2. restart the walker after
-      it reaches the cursor.
+      Right now, the walker wraps around the canvas. More could be done, for example,
+      restarting the walker after it reaches the cursor.
     </p>
   </div>
 

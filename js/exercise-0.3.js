@@ -8,6 +8,8 @@ const s1 = ( sketch ) => {
     sketch.background(sketch.background_color);
     sketch.textSize(12);
     sketch.fill(0); // black text
+    sketch.width = canvas.width;
+    sketch.height = canvas.height;
     sketch.x = canvas.width / 2;
     sketch.y = canvas.height / 2;
   };
@@ -43,6 +45,20 @@ const s1 = ( sketch ) => {
       sketch.weighted_direction();
     } else {
       sketch.random_direction();
+    }
+
+    // Wrap x around
+    if (sketch.x >= sketch.width) {
+      sketch.x = sketch.x % sketch.width;
+    } else if (sketch.x < 0) {
+      sketch.x = (sketch.x % sketch.width) + sketch.width;
+    }
+
+    // Wrap y around
+    if (sketch.y >= sketch.height) {
+      sketch.y = sketch.y % sketch.height;
+    } else if (sketch.y < 0) {
+      sketch.y = (sketch.y % sketch.height) + sketch.height;
     }
   };
 
