@@ -50,7 +50,7 @@
       if (this.y >= this.height) {
         this.y = this.y % this.height;
       } else if (this.y < 0) {
-        this.y = (this.y % thit.height) + this.height;
+        this.y = (this.y % this.height) + this.height;
       }
     }
   }
