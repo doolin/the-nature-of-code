@@ -71,16 +71,6 @@ const ex05 = ( sketch ) => {
     sketch.show_green();
     sketch.step_blue();
     sketch.show_blue();
-
-    if (sketch.mouse_inside_canvas()) {
-      // Clear a small area for the text
-      sketch.fill(sketch.background_color);
-      sketch.noStroke();
-      sketch.rect(0, 0, 90, 25);
-
-      sketch.fill(0);
-      sketch.text(`x: ${sketch.mouseX.toFixed(0)}, y: ${sketch.mouseY.toFixed(0)}`, 10, 15);
-    }
   };
 };
 
