@@ -9,9 +9,10 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="./js/hydrogen.js"></script>
     <script src="./js/shootingStar.js"></script>
-</head>
+    <script src="./js/splat.js"></script>
+  </head>
 <body>
-  <h1>Hexagons</h1>
+  <h1>Random things</h1>
 
   <p>
     The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library
@@ -22,16 +23,64 @@
 
   <h2>Energy states in the hydrogen atom</h2>
 
+  <p>
+    The hydrogen atom, with its single proton and single electron, admits a solution
+    to the governing Schrödinger equation, wave functions which probabilistically
+    describe the electron's position. Schrödinger's equation is defined by
+  </p>
+
+  $$
+  \left( -\frac{\hbar^2}{2m} \nabla^2 + V \right) \psi = i \hbar \frac{\partial \psi}{\partial t},
+  $$
+
+  <p>
+    where $\hbar$ is the reduced Planck constant, $m$ is the mass of the electron,
+    $V$ is the potential energy, and $\psi$ is the wave function. The wave function
+    is a complex-valued function of position and time, and the probability of finding
+    the electron at a given position is the square of the absolute value of the wave
+    function. The wave function is normalized, so that the integral of the square of
+    the absolute value of the wave function over all space is 1. [GPT-4o 2024-08-01]
+  </p>
+
   <h3 id="1s">1s</h3>
 
-  <div class="canvas-container" id="shooting-star"></div>
+  <p>
+    The 1s wave function is spherically symmetric, and is the lowest energy state.
+  </p>
 
   <div class="canvas-container" id="hydrogen-1s"></div>
-
 
   <h3 id="2p">2p</h3>
 
   <div class="canvas-container" id="hydrogen-2p"></div>
+
+  <hr />
+
+  <h2>Shooting star</h2>
+
+  <p>
+    Part of the fun of P5.js is experimenting with animations and effects.
+    While anything done with P5 could also be done directly on the HTML canvas,
+    P5 does provide a lot of convenience. The "shooting star" effect below
+    is pretty crude, but the basic technique will scale to more interesting
+    effects.
+  </p>
+
+  <div class="canvas-container" id="shooting-star"></div>
+
+  
+  <hr />
+
+  <h3>Fading away</h3>
+
+  <p>
+    Various effects such as aircraft contrails, fireworks, or traces through
+    cloud chambers require bening able to "fade" an image over time.
+    The following hexagon is a very crude example of fading, and is
+    a proof of concept for other simulations in the future.
+  </p>
+
+  <div class="canvas-container" id="splat"></div>
 
   <hr />
 
