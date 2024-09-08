@@ -8,17 +8,20 @@ absolute joy of building a web site in the old fashioned way. The whole
 site is hand-rolled, including the CSS. Sometimes it's good to go back
 to basics.
 
-## Deploy
 
-Code is deployed to https://www.blurbpress.com/.
+## Progress
 
-- `aws s3 cp ./p5 "s3://blurbpress.com/p5" --recursive --cache-control no-store --profile blurbpress_deploy`
-- `aws s3 cp index.html "s3://blurbpress.com" --cache-control no-store --profile blurbpress_deploy`
+So far, all the exercises in Chapters 0 and 1 have been either
+completed, or in the case of a couple, commented on the lack
+of clarity with respect to the question. Subsequent chapters
+will be completed as time and interest permit.
+
 
 ## Other Projects leveraging P5.js
 
-There are both nascent, Life(tm) has other plans for me
-right now. However, both provide a basis to continue.
+These are both nascent, Life(tm) has other plans for me
+right now. However, both provide a basis to continue
+at some point in the future.
 
-- cloud chamber
+- cloud chamber illustration
 - hydrogen energy states
