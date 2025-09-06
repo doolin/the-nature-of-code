@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nature of Code: Michelson's 1881 Experiment</title>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css">
+    <link rel="stylesheet" type="text/css" href="styles/prism.css">
+    <script src="./p5/p5.js"></script>
+    <script src="./js/prism.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/michelson-1881.js"></script>
+</head>
+<body>
+  <h1>The Nature of Code</h1>
+
+  <p>
+    Exercises from the book <a href="https://natureofcode.com/">The Nature of Code</a> by Daniel Shiffman.
+    The animations are constructed using the <a href="https://p5js.org/">p5.js</a> library
+    (<a href="https://p5js.org/reference/">reference documents for p5</a>). At the moment, all the HTML,
+    CSS, and JavaScript is hand-rolled. The page is deployed to S3 via the AWS command line tool invoked
+    from a Makefile, and served by CloudFront. S3 and CloudFront are configured with Terraform.
+  </p>
+
+  <h2>Michelson's 1881 Ether Drift Experiment</h2>
+
+  <p>
+    In 1881, Albert A. Michelson conducted an experiment to detect the motion of Earth through the 
+    hypothetical "luminiferous ether" - the medium through which light was thought to propagate. 
+    The experiment used an interferometer to measure the difference in travel time for light beams 
+    traveling parallel and perpendicular to Earth's motion through the ether.
+  </p>
+
+  <p>
+    The experiment famously produced a "null result" - no detectable difference in the light travel 
+    times, which was unexpected if the ether existed. This null result was one of the key pieces 
+    of evidence that eventually led to the development of Einstein's theory of special relativity.
+  </p>
+
+  <h3>The Michelson Interferometer</h3>
+
+  <p>
+    The Michelson interferometer splits a beam of light into two perpendicular paths using a 
+    half-silvered mirror (beam splitter). One beam travels parallel to the direction of Earth's 
+    motion through the ether, while the other travels perpendicular to it. After reflecting off 
+    mirrors, both beams recombine and create an interference pattern.
+  </p>
+
+  <p>
+    If Earth were moving through the ether at velocity \(v\), the time for light to travel the 
+    parallel path would be: (CHECK THESE EQUATIONS FOR CORRCTNESS, THEY ARE CURSOR-GENERATED)
+  </p>
+
+  <p>
+    $$t_{\parallel} = \frac{2L}{c} \frac{1}{1 - \frac{v^2}{c^2}}$$
+  </p>
+
+  <p>
+    And the time for the perpendicular path would be:
+  </p>
+
+  <p>
+    $$t_{\perp} = \frac{2L}{c} \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}$$
+  </p>
+
+  <p>
+    The difference in these times would cause a shift in the interference pattern that should 
+    be detectable. However, Michelson observed no such shift.
+  </p>
+
+  <h3 id="interferometer">Interactive Interferometer Visualization</h3>
+
+  <p>
+    The visualization below shows a simplified Michelson interferometer. The light source is 
+    represented by the yellow circle, the beam splitter by the blue square, and the mirrors 
+    by the red squares. The light paths are shown as animated lines.
+  </p>
+
+  <div class="canvas-container" id="michelson-interferometer"></div>
+
+  <p>
+    <strong>Controls:</strong> Click and drag to adjust the position of the mirrors. The 
+    interference pattern at the detector (right side) shows the result of the light path 
+    differences. The "ether wind" velocity can be adjusted using the slider below.
+  </p>
+
+  <div style="text-align: center; margin: 20px 0;">
+    <label for="ether-velocity">Ether Wind Velocity (km/s): </label>
+    <input type="range" id="ether-velocity" min="0" max="30" value="0" step="1">
+    <span id="velocity-display">0</span>
+  </div>
+
+  <h3>The Null Result</h3>
+
+  <p>
+    Michelson's experiment was designed to detect Earth's orbital velocity around the Sun, 
+    which is approximately 30 km/s. The expected fringe shift was about 0.04 wavelengths, 
+    which should have been easily detectable with the precision of the interferometer.
+  </p>
+
+  <p>
+    The null result was initially puzzling and led to several theories to explain it, 
+    including:
+  </p>
+
+  <ul>
+    <li><strong>Ether drag hypothesis:</strong> The ether might be dragged along with Earth</li>
+    <li><strong>Lorentz contraction:</strong> Objects might contract in the direction of motion</li>
+    <li><strong>Time dilation:</strong> Time might slow down for moving objects</li>
+  </ul>
+
+  <p>
+    These ideas eventually coalesced into Einstein's special theory of relativity, which 
+    eliminated the need for an ether entirely.
+  </p>
+
+  <h3>Historical Significance</h3>
+
+  <p>
+    Michelson's 1881 experiment, along with the more precise 1887 Michelson-Morley experiment, 
+    played a crucial role in the development of modern physics. The null result was one of 
+    the key pieces of evidence that led to the abandonment of the ether theory and the 
+    acceptance of Einstein's special relativity.
+  </p>
+
+  <p>
+    The experiment also demonstrated the power of interferometry as a precision measurement 
+    technique, which continues to be used in modern physics experiments, including the 
+    detection of gravitational waves by LIGO.
+  </p>
+
+  <hr />
+
+  <p>
+    This visualization is part of the <a href="/index.html">Nature of Code</a> project, 
+    exploring computational approaches to understanding physical phenomena.
+  </p>
+
+  <hr />
+
+  <footer>
+    <p>
+      Have fun!.
+    </p>
+  </footer>
+  <div class="doolin">
+    <span class="shamrock">&#9752;</span> <a href="http://dool.in/" title="My routing page.">dool.in</a>
+  </div>
+</body>
+</html>
