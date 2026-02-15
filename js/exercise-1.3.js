@@ -1,7 +1,7 @@
 const ex13 = ( sketch ) => {
   sketch.background_color = [245, 245, 220];
-  let diamteer = 36;
-  let radius = diamteer / 2;
+  let diameter = 36;
+  let radius = diameter / 2;
 
   sketch.setup = () => {
     let canvas = sketch.createCanvas(480, 200);
@@ -30,7 +30,7 @@ const ex13 = ( sketch ) => {
 
     sketch.stroke(0);
     sketch.fill([0, 100, 0]);
-    sketch.circle(sketch.position.x, sketch.position.y, diamteer);
+    sketch.circle(sketch.position.x, sketch.position.y, diameter);
   }
 }
 

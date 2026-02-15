@@ -1,4 +1,4 @@
-// TODOD: Change this to allow building and packing.
+// TODO: Change this to allow building and packing.
 (function() {
   let walker;
 
