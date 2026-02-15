@@ -25,3 +25,16 @@ at some point in the future.
 
 - cloud chamber illustration
 - hydrogen energy states
+- Michelson 1881 interferometer
+- hexagon rendering
+
+These pages (hydrogen.html, hexagon.html, michelson-1881.html) are
+intentionally unlinked from the main navigation for now, as they
+are works in progress.
+
+
+## Notes
+
+- The TODO regarding equation correctness on the Michelson page is
+  an intentional reminder to verify the Cursor-generated equations.
+- The GPT-4o attribution on the hydrogen page is intentional.
