@@ -33,6 +33,39 @@ intentionally unlinked from the main navigation for now, as they
 are works in progress.
 
 
+## Testing
+
+Tests are written with [Playwright](https://playwright.dev/) and run against
+a local static server. To run:
+
+```bash
+npm test
+```
+
+This starts a local server on port 3000 via `serve`, then runs the test suite.
+Use `npm run test:headed` to run with a visible browser, or `npm run test:report`
+to view the HTML report from the last run.
+
+The test suite covers:
+
+- **Smoke tests** — all pages load with correct titles, no console errors,
+  valid HTML structure (lang, charset, viewport)
+- **Meta tags** — every page has a description, title, charset, and viewport
+- **Canvas rendering** — p5.js creates canvas elements in every container,
+  with non-zero dimensions. WebGL canvases (perlin-terrain, bouncer-2,
+  vehicle-acceleration) are marked as `fixme` due to headless rendering
+  limitations
+- **Internal links** — all `<a>` links to `.html` pages resolve
+- **Asset loading** — stylesheets, local scripts, p5.js, MathJax, and
+  Prism.js all load successfully
+
+Playwright only needs Chromium installed. On first run:
+
+```bash
+npx playwright install chromium
+```
+
+
 ## Notes
 
 - The TODO regarding equation correctness on the Michelson page is
